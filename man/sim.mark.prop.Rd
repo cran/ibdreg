@@ -1,3 +1,30 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 18:09:51 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.mark.prop.Rd,v 1.1 2008/10/14 18:09:51 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: sim.mark.prop.Rd,v $
+%Revision 1.1  2008/10/14 18:09:51  sinnwell
+%Initial revision
+%
+%Revision 1.6  2006/10/30 21:40:36  sinnwell
+%remove pre tags
+%
+%Revision 1.5  2006/10/30 21:14:29  sinnwell
+%reduce example
+%
+%Revision 1.4  2005/10/07 18:23:16  folie
+%Updated SGML file
+%
+%Revision 1.3  2005/10/04 18:42:48  folie
+%Edited comments
+%
+%Revision 1.2  2005/10/03 21:25:57  folie
+%Updated SGML help file
+%
+%Revision 1.1  2005/09/28 18:37:57  folie
+%Initial revision
+%
 \name{sim.mark.prop}
 \alias{sim.mark.prop}
 \title{
@@ -222,4 +249,4 @@ prop7X
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

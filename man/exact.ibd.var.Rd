@@ -1,3 +1,27 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 19:39:15 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/exact.ibd.var.Rd,v 1.1 2008/10/14 19:39:15 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: exact.ibd.var.Rd,v $
+%Revision 1.1  2008/10/14 19:39:15  sinnwell
+%Initial revision
+%
+%Revision 1.2  2006/11/21 17:23:08  sinnwell
+%usage was still create.ibd.var, change to exact.ibd.var
+%
+%Revision 1.1  2006/10/12 14:03:13  sinnwell
+%Initial revision
+%
+%Revision 1.3  2006/10/10 21:19:38  sinnwell
+%format return object
+%
+%Revision 1.2  2006/08/07 17:44:03  sinnwell
+%add commented example, add more details about perl script
+%
+%Revision 1.1  2006/04/19 22:15:00  sinnwell
+%Initial revision
+%
 \name{exact.ibd.var}
 \alias{exact.ibd.var}
 \title{
@@ -56,4 +80,4 @@ relative pairs.
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

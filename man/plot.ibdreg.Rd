@@ -1,3 +1,10 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/15 16:27:21 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plot.ibdreg.Rd,v 1.2 2008/10/15 16:27:21 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%Log: $
+%
 \name{plot.ibdreg}
 \alias{plot.ibdreg}
 \title{
@@ -7,7 +14,7 @@
 plot test results within an ibdreg object
 }
 \usage{
-plot.ibdreg(x, ...)
+ \method{plot}{ibdreg}(x, ...)
 }
 \arguments{
 
@@ -45,4 +52,4 @@ linkage of AA, UU, AU, ALL linkage are plotted together.
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

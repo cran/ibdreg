@@ -1,3 +1,16 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/15 14:03:57 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plotpval.Rd,v 1.1 2008/10/15 14:03:57 sinnwell Exp $ -->
+% $Locker:  $ -->
+%
+%$Log: plotpval.Rd,v $
+%Revision 1.1  2008/10/15 14:03:57  sinnwell
+%Initial revision
+%
+%Revision 1.5  2008/10/14 20:46:33  sinnwell
+%addkeywords
+%
+
 \name{plotpval}
 \alias{plotpval}
 \title{
@@ -66,4 +79,4 @@ plotpval(pos=1:10, pmat=cbind(runif(10)/5, runif(10)/10),
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

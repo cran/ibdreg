@@ -1,3 +1,25 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 20:07:25 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/pairSum.Rd,v 1.1 2008/10/14 20:07:25 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: pairSum.Rd,v $
+%Revision 1.1  2008/10/14 20:07:25  sinnwell
+%Initial revision
+%
+%Revision 1.2  2006/10/30 19:58:18  sinnwell
+%trying to make usage show both functions
+%
+%Revision 1.1  2006/09/12 21:26:02  sinnwell
+%Initial revision
+%
+%Revision 1.2  2006/09/12 20:41:45  sinnwell
+%remove reference
+%
+%Revision 1.1  2006/04/26 15:22:48  sinnwell
+%Initial revision
+%
+
 \name{pairSum}
 \alias{pairSum}
 \alias{pairDiff}
@@ -45,4 +67,4 @@ pairDiff(20,30)
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

@@ -1,3 +1,10 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 20:07:38 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/minpRows.Rd,v 1.1 2008/10/14 20:07:38 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%Log: $
+%
 \name{minpRows}
 \alias{minpRows}
 \title{
@@ -53,4 +60,4 @@ best.tests <- minpRows(tests, colnames=c("position", "chi.test", "df","pvalue"))
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

@@ -1,3 +1,12 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 19:38:50 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibdreg.Rd,v 1.1 2008/10/14 19:38:50 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%Log: ibdreg.sgml,v $
+%revision 1.14  2008/10/14 18:37:47  sinnwell
+%keywords
+%
 \name{ibdreg}
 \alias{ibdreg}
 \title{
@@ -172,4 +181,4 @@ Quasi-Likelihood Score Statistics. Submitted.
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

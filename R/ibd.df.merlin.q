@@ -1,8 +1,11 @@
 #$Author: sinnwell $
-#$Date: 2006/11/08 19:29:39 $
-#$Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibd.df.merlin.q,v 1.5 2006/11/08 19:29:39 sinnwell Exp $
+#$Date: 2008/10/15 17:02:57 $
+#$Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibd.df.merlin.q,v 1.6 2008/10/15 17:02:57 sinnwell Exp $
 #$Locker:  $
 #$Log: ibd.df.merlin.q,v $
+#Revision 1.6  2008/10/15 17:02:57  sinnwell
+#T/F to full words
+#
 #Revision 1.5  2006/11/08 19:29:39  sinnwell
 #undo model.matrix class, keep at matrix post0,1,2 frames
 #
@@ -63,7 +66,7 @@ ibd.df.merlin <- function(ibd.dat){
   
   # Get ped,per1,per2 id's for first map position
 
-  zed <- c(T,rep(F,(npos-1)))
+  zed <- c(TRUE,rep(FALSE,(npos-1)))
   zed <- rep(zed, npairs)
 
   ped <-  ibd.dat$FAMILY[zed]

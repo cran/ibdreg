@@ -1,3 +1,16 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 19:25:10 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/align.ibd.var.Rd,v 1.1 2008/10/14 19:25:10 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: align.ibd.var.Rd,v $
+%Revision 1.1  2008/10/14 19:25:10  sinnwell
+%Initial revision
+%
+%Revision 1.3  2008/10/14 18:36:46  sinnwell
+%add keywords
+%
+
 \name{align.ibd.var}
 \alias{align.ibd.var}
 \title{
@@ -41,4 +54,4 @@ a list resembling an ibd.var object
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

@@ -1,3 +1,19 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/15 16:28:17 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plot.linkage.tests.Rd,v 1.2 2008/10/15 16:28:17 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: plot.linkage.tests.Rd,v $
+%Revision 1.2  2008/10/15 16:28:17  sinnwell
+%usage
+%
+%Revision 1.1  2008/10/14 20:43:43  sinnwell
+%Initial revision
+%
+%Revision 1.3  2008/10/14 20:30:52  sinnwell
+%addkeywords
+%
+
 \name{plot.linkage.tests}
 \alias{plot.linkage.tests}
 \title{
@@ -9,7 +25,7 @@ Plot a linkage tests object, which was made within ibdreg.  Plot the
 with and without covariates, constrained for one-sided tests.
 }
 \usage{
-plot.linkage.tests(x, ...)
+\method{plot}{linkage.tests}(x, ...)
 }
 \arguments{
 
@@ -45,4 +61,4 @@ nothing is returned
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

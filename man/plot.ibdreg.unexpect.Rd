@@ -1,3 +1,10 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/15 16:27:21 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plot.ibdreg.unexpect.Rd,v 1.2 2008/10/15 16:27:21 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%Log: $
+%
 \name{plot.ibdreg.unexpect}
 \alias{plot.ibdreg.unexpect}
 \title{
@@ -9,7 +16,7 @@ Plot the -log10(pvalue) of the unconstrained and constrained linkage
 tests to indicate areas of unexpected allele sharing
 }
 \usage{
-plot.ibdreg.unexpect(x, status.method="AA", ...)
+ \method{plot}{ibdreg.unexpect}(x, status.method="AA", ...)
 }
 \arguments{
 \item{x}{
@@ -48,4 +55,4 @@ nothing is returned
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

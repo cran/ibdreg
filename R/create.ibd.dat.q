@@ -1,8 +1,11 @@
 #$Author: sinnwell $
-#$Date: 2006/10/30 16:49:43 $
-#$Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/create.ibd.dat.q,v 1.10 2006/10/30 16:49:43 sinnwell Exp $
+#$Date: 2008/10/14 16:46:05 $
+#$Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/create.ibd.dat.q,v 1.11 2008/10/14 16:46:05 sinnwell Exp $
 #$Locker:  $
 #$Log: create.ibd.dat.q,v $
+#Revision 1.11  2008/10/14 16:46:05  sinnwell
+#change T to TRUE
+#
 #Revision 1.10  2006/10/30 16:49:43  sinnwell
 #refine checks for post2 and prior2 ==0 for Xlinked
 #
@@ -50,7 +53,7 @@ create.ibd.dat <- function(postfile,          # ibd file with all loci, all alle
   # combine a merlin output file which has FAMILY, ID1, ID2, post0,post1,post2
   # with merlin output run on a prior locus, those are prior ibd probs
   
-  dat.ibd <- read.table(file=postfile, header=T)
+  dat.ibd <- read.table(file=postfile, header=TRUE)
 
   # to make steps go faster, remove self rows, obviously not useful
 
@@ -76,7 +79,7 @@ create.ibd.dat <- function(postfile,          # ibd file with all loci, all alle
  # applies to use for all positions, all chromosomes
  # --exception for X has a different IBD file
 
-  dat.prior <- read.table(file=priorfile, header=T)
+  dat.prior <- read.table(file=priorfile, header=TRUE)
   dat.prior <- dat.prior[,-4]
   names(dat.prior) <- c("ped.id", "person1.id", "person2.id", "prior0", "prior1", "prior2")
 

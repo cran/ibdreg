@@ -1,3 +1,10 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 19:46:24 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/linkage.tests.Rd,v 1.1 2008/10/14 19:46:24 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%Log: $
+%
 \name{linkage.tests}
 \alias{linkage.tests}
 \alias{linkage.tests.B0}
@@ -82,4 +89,4 @@ indicated in linkage tests.
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

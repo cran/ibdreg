@@ -1,3 +1,27 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 18:09:35 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.ibd.var.Rd,v 1.1 2008/10/14 18:09:35 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: sim.ibd.var.Rd,v $
+%Revision 1.1  2008/10/14 18:09:35  sinnwell
+%Initial revision
+%
+%Revision 1.5  2006/10/30 21:40:44  sinnwell
+%remove pre tags
+%
+%Revision 1.4  2006/10/30 21:14:13  sinnwell
+%update example and details
+%
+%Revision 1.3  2006/10/30 19:43:55  sinnwell
+%nsim to n.sim and edit description
+%
+%Revision 1.2  2006/10/30 19:17:41  sinnwell
+%nsim to n.sim
+%
+%Revision 1.1  2006/10/10 21:21:07  sinnwell
+%Initial revision
+%
 \name{sim.ibd.var}
 \alias{sim.ibd.var}
 \title{
@@ -110,4 +134,4 @@ ped7.ibdVarX <- sim.ibd.var("ped7.pre", n.sim=1000, x.linked=TRUE)
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

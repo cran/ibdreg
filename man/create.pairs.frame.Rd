@@ -1,3 +1,15 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 19:39:26 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/create.pairs.frame.Rd,v 1.1 2008/10/14 19:39:26 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: create.pairs.frame.Rd,v $
+%Revision 1.1  2008/10/14 19:39:26  sinnwell
+%Initial revision
+%
+%Revision 1.11  2008/10/14 18:37:11  sinnwell
+%keywords
+
 \name{create.pairs.frame}
 \alias{create.pairs.frame}
 \alias{create.pairs.frame.cvec}
@@ -63,4 +75,4 @@ with intercept and, if covariates in formula, columns for covariates).
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

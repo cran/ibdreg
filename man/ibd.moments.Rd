@@ -1,3 +1,16 @@
+% $Author: sinnwell $ 
+% $Date: 2008/10/14 18:05:13 $ 
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibd.moments.Rd,v 1.1 2008/10/14 18:05:13 sinnwell Exp $ -->
+% $Locker:  $
+% 
+%$Log: ibd.moments.Rd,v $
+%Revision 1.1  2008/10/14 18:05:13  sinnwell
+%Initial revision
+%
+%Revision 1.1  2006/10/10 21:20:05  sinnwell
+%Initial revision
+%
+
 \name{ibd.moments}
 \alias{ibd.moments}
 \title{
@@ -45,4 +58,4 @@ a list with person1.id person2.id sm and sv
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

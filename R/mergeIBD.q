@@ -1,8 +1,11 @@
 #$Author: sinnwell $
-#$Date: 2006/09/14 19:26:43 $
-#$Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/mergeIBD.q,v 1.1 2006/09/14 19:26:43 sinnwell Exp $
+#$Date: 2008/10/14 16:48:18 $
+#$Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/mergeIBD.q,v 1.2 2008/10/14 16:48:18 sinnwell Exp $
 #$Locker:  $
 #$Log: mergeIBD.q,v $
+#Revision 1.2  2008/10/14 16:48:18  sinnwell
+#T to TRUE
+#
 #Revision 1.1  2006/09/14 19:26:43  sinnwell
 #Initial revision
 #
@@ -44,10 +47,10 @@ mergeIBD <- function(ibd.dat, sex.dat){
    names(id.dat) <- c("ped.id","person.id")
    id.dat <- cbind(id.dat, indx=(1:nrow(id.dat)))
 
-   m1 <- merge(id.ibd,id.dat,by.x=c(1,2),by.y=c(1,2),all.x=T)
+   m1 <- merge(id.ibd,id.dat,by.x=c(1,2),by.y=c(1,2),all.x=TRUE)
    m1 <- m1[order(m1$rownum),]
 
-   m2 <- merge(id.ibd,id.dat,by.x=c(1,3),by.y=c(1,2),all.x=T)
+   m2 <- merge(id.ibd,id.dat,by.x=c(1,3),by.y=c(1,2),all.x=TRUE)
    m2 <- m2[order(m2$rownum),]
 
    indx1 <- m1$indx

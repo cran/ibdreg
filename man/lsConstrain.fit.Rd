@@ -1,3 +1,10 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 19:46:24 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/lsConstrain.fit.Rd,v 1.1 2008/10/14 19:46:24 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%Log: $
+%
 \name{lsConstrain.fit}
 \alias{lsConstrain.fit}
 \title{
@@ -136,4 +143,4 @@ save
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

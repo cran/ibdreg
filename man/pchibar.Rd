@@ -1,3 +1,16 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 20:08:41 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/pchibar.Rd,v 1.1 2008/10/14 20:08:41 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: pchibar.Rd,v $
+%Revision 1.1  2008/10/14 20:08:41  sinnwell
+%Initial revision
+%
+%Revision 1.2  2008/10/14 19:49:36  sinnwell
+%addkeywords
+%
+
 \name{pchibar}
 \alias{pchibar}
 \title{
@@ -42,4 +55,4 @@ pch = pchibar(3, df=c(0,1), wt=c(.5,.5))
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

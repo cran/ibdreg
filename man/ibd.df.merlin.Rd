@@ -1,3 +1,15 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 19:39:03 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibd.df.merlin.Rd,v 1.1 2008/10/14 19:39:03 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: ibd.df.merlin.Rd,v $
+%Revision 1.1  2008/10/14 19:39:03  sinnwell
+%Initial revision
+%
+%Revision 1.5  2008/10/14 18:37:34  sinnwell
+%keywords
+%
 \name{ibd.df.merlin}
 \alias{ibd.df.merlin}
 \title{
@@ -46,4 +58,4 @@ df\$post2:      relative pairs (rows) at each chromosome position (columns)
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

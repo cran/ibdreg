@@ -1,3 +1,18 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 18:09:23 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.ibd.setup.Rd,v 1.1 2008/10/14 18:09:23 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: sim.ibd.setup.Rd,v $
+%Revision 1.1  2008/10/14 18:09:23  sinnwell
+%Initial revision
+%
+%Revision 1.2  2006/10/27 17:20:18  sinnwell
+%fix ped description
+%
+%Revision 1.1  2006/10/10 21:20:38  sinnwell
+%Initial revision
+%
 \name{sim.ibd.setup}
 \alias{sim.ibd.setup}
 \alias{setFounderAlleles}
@@ -44,4 +59,4 @@ A ped object to be used in sim.mark.prop
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

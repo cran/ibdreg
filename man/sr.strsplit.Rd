@@ -67,4 +67,4 @@ split <- sr.strsplit(y, sep = ":")
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

@@ -1,3 +1,19 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/15 16:30:32 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/print.ibd.var.Rd,v 1.2 2008/10/15 16:30:32 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: print.ibd.var.Rd,v $
+%Revision 1.2  2008/10/15 16:30:32  sinnwell
+%usage
+%
+%Revision 1.1  2008/10/14 20:49:41  sinnwell
+%Initial revision
+%
+%Revision 1.1  2006/11/07 20:04:15  sinnwell
+%Initial revision
+%
+
 \name{print.ibd.var}
 \alias{print.ibd.var}
 \title{
@@ -11,7 +27,7 @@ output.  If ped.id is not NULL, print the ibd.var elements that
 match ped.ids.  If sinkfile is not NULL, sink results to that file.
 }
 \usage{
-print.ibd.var(x, ped.id=NULL, sinkfile=NULL, digits=max(options()$digits - 2, 5), ...)
+ \method{print}{ibd.var}(x, ped.id=NULL, sinkfile=NULL, digits=max(options()$digits - 2, 5), ...)
 }
 \arguments{
 
@@ -56,4 +72,4 @@ nothing is returned
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.

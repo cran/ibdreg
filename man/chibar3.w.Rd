@@ -1,3 +1,15 @@
+% $Author: sinnwell $ -->
+% $Date: 2008/10/14 19:39:42 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/chibar3.w.Rd,v 1.1 2008/10/14 19:39:42 sinnwell Exp $ -->
+% $Locker:  $ -->
+% 
+%$Log: chibar3.w.Rd,v $
+%Revision 1.1  2008/10/14 19:39:42  sinnwell
+%Initial revision
+%
+%Revision 1.3  2008/10/14 18:36:55  sinnwell
+%add keywords
+%
 \name{chibar3.w}
 \alias{chibar3.w}
 \title{
@@ -38,4 +50,4 @@ chibar3.w(sigma=diag(c(1,1,1)))
 }
 \keyword{}
 % docclass is function
-% Converted by Sd2Rd version 1.21.
+% Converted by Sd2Rd version 43267.
