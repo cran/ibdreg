@@ -21,9 +21,6 @@ Nothing is returned.  The expression is evaluated and details are
 printed for CPU time, overall time, child process time, and heap 
 space memory usage.
 }
-\section{Side Effects}{
-
-}
 \details{
 The resources given by Venebles and Ripley had reported both Cache and
 Working memory usage.  S-PLUS 7 no longer tracks Cache usage, so we
@@ -44,6 +41,5 @@ resources({
   norm.mat = matrix(rnorm(10000), nrow=100)
 })
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

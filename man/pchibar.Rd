@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 20:08:41 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/pchibar.Rd,v 1.1 2008/10/14 20:08:41 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:16:51 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/pchibar.Rd,v 1.2 2010/02/08 18:16:51 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: pchibar.Rd,v $
+%Revision 1.2  2010/02/08 18:16:51  sinnwell
+%rm empty sections
+%
 %Revision 1.1  2008/10/14 20:08:41  sinnwell
 %Initial revision
 %
@@ -37,15 +40,6 @@ vector of mixing proportions (weights)
 \value{
 cumulative density of chi-bar distribution
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{pchisq}}
 }
@@ -53,6 +47,5 @@ cumulative density of chi-bar distribution
 pch = pchibar(3, df=c(0,1), wt=c(.5,.5))
 1-pch  # compare to 1-pchisq(3,1)
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

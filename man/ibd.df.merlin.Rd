@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:39:03 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibd.df.merlin.Rd,v 1.1 2008/10/14 19:39:03 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:10:06 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibd.df.merlin.Rd,v 1.2 2010/02/08 18:10:06 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: ibd.df.merlin.Rd,v $
+%Revision 1.2  2010/02/08 18:10:06  sinnwell
+%rm empty section
+%
 %Revision 1.1  2008/10/14 19:39:03  sinnwell
 %Initial revision
 %
@@ -41,21 +44,5 @@ df\$post0:      matrix objects that can be referenced from df.  Each
 df\$post1:      is a matrix with posterior ibd sharing probabilities for
 df\$post2:      relative pairs (rows) at each chromosome position (columns)
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
-\seealso{
-
-}
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

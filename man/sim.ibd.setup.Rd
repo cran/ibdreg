@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 18:09:23 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.ibd.setup.Rd,v 1.1 2008/10/14 18:09:23 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:39:33 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.ibd.setup.Rd,v 1.2 2010/02/08 18:39:33 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: sim.ibd.setup.Rd,v $
+%Revision 1.2  2010/02/08 18:39:33  sinnwell
+%rm empty sections
+%
 %Revision 1.1  2008/10/14 18:09:23  sinnwell
 %Initial revision
 %
@@ -42,21 +45,8 @@ logical; if TRUE, apply method to x chromosome
 \value{
 A ped object to be used in sim.mark.prop
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{sim.mark.prop}}
 }
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

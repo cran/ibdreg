@@ -1,6 +1,6 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:46:24 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/linkage.tests.Rd,v 1.1 2008/10/14 19:46:24 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:12:54 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/linkage.tests.Rd,v 1.2 2010/02/08 18:12:54 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %Log: $
@@ -62,7 +62,7 @@ cutoff for singular values in generalized inverse (Ginv)
 an object of class linkage.tests
 }
 \section{Side Effects}{
-
+none
 }
 \details{
 The calculations for linkage tests require a pre-calculation of
@@ -76,17 +76,10 @@ linkage > constrained linkage tests.  The method also returns z scores
 for pedigree-specific contributions to unexpected allele sharing
 indicated in linkage tests.
 }
-\section{References}{
-
-}
 \seealso{
 \code{\link{ibdreg}},
 \code{\link{print.linkage.tests}},
 \code{\link{plot.linkage.tests}}
 }
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

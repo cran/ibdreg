@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:39:15 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/exact.ibd.var.Rd,v 1.1 2008/10/14 19:39:15 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:07:23 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/exact.ibd.var.Rd,v 1.2 2010/02/08 18:07:23 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: exact.ibd.var.Rd,v $
+%Revision 1.2  2010/02/08 18:07:23  sinnwell
+%rm empty section
+%
 %Revision 1.1  2008/10/14 19:39:15  sinnwell
 %Initial revision
 %
@@ -57,15 +60,6 @@ ret\$sv: variance-covariance matrix for ibd sharing between pairs of
 relative pairs.
 </pre
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{sim.ibd.var}}
 }
@@ -78,6 +72,5 @@ relative pairs.
 
 # RorS> chr1.ibd.var <- exact.ibd.var("chr1.var.tmp")
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

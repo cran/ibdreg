@@ -1,6 +1,6 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:38:50 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibdreg.Rd,v 1.1 2008/10/14 19:38:50 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:12:35 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibdreg.Rd,v 1.2 2010/02/08 18:12:35 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %Log: ibdreg.sgml,v $
@@ -120,9 +120,6 @@ object of class linkage.all; includes score statistics for linkage
 with ALL pairs (test iv).
 }
 }
-\section{Side Effects}{
-
-}
 \details{
 The tests for genetic linkage use quasi-likelihood score statistics, 
 formulated in terms of weighted least squares regression.  
@@ -179,6 +176,5 @@ Quasi-Likelihood Score Statistics. Submitted.
 
 # call ibdreg
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

@@ -65,6 +65,5 @@ split <- sr.strsplit(y, sep = ":")
 ## split has the value:
 ##[1] "str"   "split"
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

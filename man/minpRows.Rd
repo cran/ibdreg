@@ -1,6 +1,6 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 20:07:38 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/minpRows.Rd,v 1.1 2008/10/14 20:07:38 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:16:38 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/minpRows.Rd,v 1.2 2010/02/08 18:16:38 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %Log: $
@@ -38,18 +38,6 @@ column of obj
 \value{
 a subset of the obj data.frame rows
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
-\seealso{
-
-}
 \examples{
 ## create a data frame of chi-square(1) tests
 tests <- data.frame(pos=1:3, chitest=c(3,4,2), df=rep(1,3), 
@@ -58,6 +46,5 @@ tests <- data.frame(pos=1:3, chitest=c(3,4,2), df=rep(1,3),
 # find the rows of the best tests
 best.tests <- minpRows(tests, colnames=c("position", "chi.test", "df","pvalue"))
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

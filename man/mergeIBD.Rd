@@ -1,6 +1,6 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:46:24 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/mergeIBD.Rd,v 1.1 2008/10/14 19:46:24 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:14:11 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/mergeIBD.Rd,v 1.2 2010/02/08 18:14:11 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %Log: $
@@ -31,21 +31,5 @@ a data frame containing ped.id, person.id, and sex
 a data frame with identifiers for relative pairs, their ibd data, and
 the two sex codes for the pair
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
-\seealso{
-
-}
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 20:07:25 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/pairSum.Rd,v 1.1 2008/10/14 20:07:25 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:16:51 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/pairSum.Rd,v 1.2 2010/02/08 18:16:51 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: pairSum.Rd,v $
+%Revision 1.2  2010/02/08 18:16:51  sinnwell
+%rm empty sections
+%
 %Revision 1.1  2008/10/14 20:07:25  sinnwell
 %Initial revision
 %
@@ -45,17 +48,11 @@ pairDiff(cov1, cov2)
 \value{
 Either the sum or the difference (absolute) of the two covariates
 }
-\section{Side Effects}{
-
-}
 \details{
 For use within the ibdreg package to make covariates that are a function
 of the two covariates in a relative pair. These functions are to be
 used in the formula parameter of ibdreg, and the pair-specific
 covariates can be expressed as pairSum(cov) or pairSum(cov, cov). 
-}
-\section{References}{
-
 }
 \seealso{
 \code{\link{ibdreg}}
@@ -65,6 +62,5 @@ pairSum(20,30)
 
 pairDiff(20,30)
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

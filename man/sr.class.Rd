@@ -24,18 +24,9 @@ character vector with the class(es) to assign to x
 \value{
 character vector giving the S3 class(es) of x
 }
-\section{Side Effects}{
-
-}
 \details{
 Assigns the S3 class inheritence vector for S-PLUS objects by
 oldClass() and R objects by class()
-}
-\section{References}{
-
-}
-\seealso{
-
 }
 \examples{
 # create a simple object
@@ -47,6 +38,5 @@ myobj
 sr.class(myobj)  # returns: "temp.class" "character"
 inherits(myobj, "character") # returns TRUE
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

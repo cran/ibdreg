@@ -1,6 +1,6 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:46:24 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/lsConstrain.fit.Rd,v 1.1 2008/10/14 19:46:24 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:14:18 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/lsConstrain.fit.Rd,v 1.2 2010/02/08 18:14:18 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %Log: $
@@ -82,18 +82,9 @@ s:       (defind above)
 
 min.dist: the minimum value of the function (see description).
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
 \section{References}{
 Wollan PC, Dykstra RL. Minimizing inequality constrained
 mahalanobis distances. Applied Statistics Algorithm AS 225 (1987).
-}
-\seealso{
-
 }
 \examples{
 # An simulation example with linear regression with 3 beta's, 
@@ -141,6 +132,5 @@ save <- lsConstrain.fit(x=bhat,b=b, s=s, a=a, iflag=iflag, itmax=500,
 
 save
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 18:09:35 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.ibd.var.Rd,v 1.1 2008/10/14 18:09:35 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:39:33 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.ibd.var.Rd,v 1.2 2010/02/08 18:39:33 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: sim.ibd.var.Rd,v $
+%Revision 1.2  2010/02/08 18:39:33  sinnwell
+%rm empty sections
+%
 %Revision 1.1  2008/10/14 18:09:35  sinnwell
 %Initial revision
 %
@@ -82,9 +85,6 @@ ret\$sm: mean vector of ibd sharing between relative pairs \{person1.id, person2
 ret\$sv: variance-covariance matrix for ibd sharing between pairs of
 relative pairs.
 }
-\section{Side Effects}{
-
-}
 \details{
 The bulk of the work for simulating ibd sharing vectors is in
 sim.mark.prop(). These methods will handle practically
@@ -132,6 +132,5 @@ ped7.ibdVar <- sim.ibd.var("ped7.pre", n.sim=1000)
 # demonstrate for x.linked=TRUE
 ped7.ibdVarX <- sim.ibd.var("ped7.pre", n.sim=1000, x.linked=TRUE)
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

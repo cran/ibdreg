@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/15 16:28:17 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plot.linkage.tests.Rd,v 1.2 2008/10/15 16:28:17 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:19:59 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plot.linkage.tests.Rd,v 1.3 2010/02/08 18:19:59 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: plot.linkage.tests.Rd,v $
+%Revision 1.3  2010/02/08 18:19:59  sinnwell
+%rm empty sections
+%
 %Revision 1.2  2008/10/15 16:28:17  sinnwell
 %usage
 %
@@ -39,15 +42,6 @@ additional plot parameters, this method checks for 'title'
 \value{
 nothing is returned
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{ibdreg}},
 \code{\link{linkage.tests}}
@@ -59,6 +53,5 @@ nothing is returned
 
 # plot.linkage.tests(reg.out$AA.linkage, title="AA, formula: ~1")
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

@@ -1,6 +1,6 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:46:24 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/linkage.all.Rd,v 1.1 2008/10/14 19:46:24 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:12:46 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/linkage.all.Rd,v 1.2 2010/02/08 18:12:46 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %Log: $
@@ -45,24 +45,14 @@ cutoff for singular values in generalized inverse (Ginv)
 a linkage.all object, containing tests for linkage on all relative
 pairs
 }
-\section{Side Effects}{
-
-}
 \details{
 linkage.all sets up the linkage calculations for each position, and
 the calculations are performed over all pedigrees in linkage.all.pedloop.
-}
-\section{References}{
-
 }
 \seealso{
 \code{\link{ibdreg}},
 \code{\link{print.linkage.all}},
 \code{\link{plot.linkage.all}}
 }
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

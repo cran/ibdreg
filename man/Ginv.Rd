@@ -1,8 +1,11 @@
 % $Author: sinnwell $ 
-% $Date: 2008/01/08 20:26:29 $ 
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/Ginv.Rd,v 1.2 2008/01/08 20:26:29 sinnwell Exp $ 
+% $Date: 2010/02/08 18:07:15 $ 
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/Ginv.Rd,v 1.3 2010/02/08 18:07:15 sinnwell Exp $ 
 % $Locker:  $ 
 % $Log: Ginv.Rd,v $
+% Revision 1.3  2010/02/08 18:07:15  sinnwell
+% rm empty ssection
+%
 % Revision 1.2  2008/01/08 20:26:29  sinnwell
 % change comment symbol
 %
@@ -73,9 +76,6 @@ Generalized inverse of x.
 Rank of matrix x.
 }
 }
-\section{Side Effects}{
-
-}
 \details{
 The svd function uses the LAPACK standard library to compute the 
 singular values of the input matrix, and the rank of the matrix is 
@@ -104,6 +104,5 @@ svd
     ginv.x <- save$Ginv
     rank.x <- save$rank
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 37351.

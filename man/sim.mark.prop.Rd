@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 18:09:51 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.mark.prop.Rd,v 1.1 2008/10/14 18:09:51 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:39:33 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.mark.prop.Rd,v 1.2 2010/02/08 18:39:33 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: sim.mark.prop.Rd,v $
+%Revision 1.2  2010/02/08 18:39:33  sinnwell
+%rm empty sections
+%
 %Revision 1.1  2008/10/14 18:09:51  sinnwell
 %Initial revision
 %
@@ -183,12 +186,6 @@ the second marker of each simulated marker pair (ret\$mark2) inherited
 from the mother.  Thus, it is possible to follow maternal and paternal
 allele transmission through dependent pedigree members.
 }
-\section{References}{
-
-}
-\seealso{
-
-}
 \examples{
 ###################################################
 ### The following examples use a list as input: ###
@@ -247,6 +244,5 @@ prop7X <- sim.mark.prop(ped7.x, x.linked=TRUE, n.iter=5)
 
 prop7X
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

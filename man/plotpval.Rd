@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/15 14:03:57 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plotpval.Rd,v 1.1 2008/10/15 14:03:57 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:20:50 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plotpval.Rd,v 1.2 2010/02/08 18:20:50 sinnwell Exp $ -->
 % $Locker:  $ -->
 %
 %$Log: plotpval.Rd,v $
+%Revision 1.2  2010/02/08 18:20:50  sinnwell
+%rm empty section
+%
 %Revision 1.1  2008/10/15 14:03:57  sinnwell
 %Initial revision
 %
@@ -58,15 +61,12 @@ y axis label
 nothing is returned
 }
 \section{Side Effects}{
-
+none
 }
 \details{
 The default height for the y-axis is 3, which corresponds to a p-value
 of 1e-3.  If any p-value is smaller, the height is -log10 of the
 smallest p-value in pmat.
-}
-\section{References}{
-
 }
 \seealso{
 \code{\link{par}},
@@ -77,6 +77,5 @@ smallest p-value in pmat.
 plotpval(pos=1:10, pmat=cbind(runif(10)/5, runif(10)/10), 
          lty=c(1,2), col=c(1,2), legend=c("runif/5", "runif/10"))
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/15 16:30:32 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/print.linkage.all.Rd,v 1.2 2008/10/15 16:30:32 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:35:41 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/print.linkage.all.Rd,v 1.3 2010/02/08 18:35:41 sinnwell Exp $ -->
 % $Locker:  $ -->
 %
 %$Log: print.linkage.all.Rd,v $
+%Revision 1.3  2010/02/08 18:35:41  sinnwell
+%rm empty sections
+%
 %Revision 1.2  2008/10/15 16:30:32  sinnwell
 %usage
 %
@@ -41,23 +44,10 @@ additional display parameters
 \value{
 nothing is returned
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{ibdreg}},
 \code{\link{linkage.all}},
 \code{\link{plot.linkage.all}}
 }
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

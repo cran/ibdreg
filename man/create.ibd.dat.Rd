@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:39:26 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/create.ibd.dat.Rd,v 1.1 2008/10/14 19:39:26 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:05:36 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/create.ibd.dat.Rd,v 1.2 2010/02/08 18:05:36 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: create.ibd.dat.Rd,v $
+%Revision 1.2  2010/02/08 18:05:36  sinnwell
+%rm empty sections
+%
 %Revision 1.1  2008/10/14 19:39:26  sinnwell
 %Initial revision
 %
@@ -82,9 +85,6 @@ vector with probability of sharing two (2) alleles ibd
 between relative pairs, given no genotype data
 }
 }
-\section{Side Effects}{
-
-}
 \details{
 Perl scripts are provided within ibdreg/perl/ for creating IBD
 probability files, and are explained in the user manual.  
@@ -94,9 +94,6 @@ When the chromosome is X-linked, the Merlin software treats males as
 homozygous for their X chromosome, and thus the probability of sharing 1
 and 2 alleles IBD with any other relative are switched within 
 create.ibd.dat.
-}
-\section{References}{
-
 }
 \seealso{
 \code{\link{ibdreg}},
@@ -119,6 +116,5 @@ create.ibd.dat.
 
 # names(ibd.dat.obj)
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

@@ -1,6 +1,6 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/15 16:30:32 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/print.ibdreg.Rd,v 1.2 2008/10/15 16:30:32 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:22:58 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/print.ibdreg.Rd,v 1.3 2010/02/08 18:22:58 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 % Log: print.ibdreg.sgml,v $
@@ -36,21 +36,8 @@ optional parameters for the print method
 \value{
 nothing is returned
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{ibdreg}}
 }
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

@@ -1,9 +1,12 @@
 % $Author: sinnwell $ 
-% $Date: 2008/10/14 18:05:13 $ 
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibd.moments.Rd,v 1.1 2008/10/14 18:05:13 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:10:15 $ 
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/ibd.moments.Rd,v 1.2 2010/02/08 18:10:15 sinnwell Exp $ -->
 % $Locker:  $
 % 
 %$Log: ibd.moments.Rd,v $
+%Revision 1.2  2010/02/08 18:10:15  sinnwell
+%rm empty sections
+%
 %Revision 1.1  2008/10/14 18:05:13  sinnwell
 %Initial revision
 %
@@ -29,10 +32,10 @@ ibd.moments(simped, person.indx, male, x.linked=FALSE)
 The object returned from sim.mark.prop
 }
 \item{person.indx }{
-
+person identifier
 }
 \item{male}{
-
+binary code (1/0) for if person is male
 }
 \item{x.linked }{
 logical, if TRUE, apply the method for an x-linked chromosome
@@ -41,21 +44,8 @@ logical, if TRUE, apply the method for an x-linked chromosome
 \value{
 a list with person1.id person2.id sm and sv
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{sim.mark.prop}}
 }
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

@@ -1,9 +1,12 @@
 % $Author: sinnwell $
-% $Date: 2008/05/09 15:03:01 $
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/printBanner.Rd,v 1.3 2008/05/09 15:03:01 sinnwell Exp $
-% $Id: printBanner.Rd,v 1.3 2008/05/09 15:03:01 sinnwell Exp $
+% $Date: 2010/02/08 18:22:58 $
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/printBanner.Rd,v 1.4 2010/02/08 18:22:58 sinnwell Exp $
+% $Id: printBanner.Rd,v 1.4 2010/02/08 18:22:58 sinnwell Exp $
 % $Locker:  $
 % $Log: printBanner.Rd,v $
+% Revision 1.4  2010/02/08 18:22:58  sinnwell
+% rm empty sections
+%
 % Revision 1.3  2008/05/09 15:03:01  sinnwell
 % add to description
 %
@@ -57,15 +60,10 @@ type of character for the border
 }
 }
 \value{
-}
-\section{Side Effects}{
-
+  nothing is returned
 }
 \details{
 This function prints a nice banner in both R and S-PLUS
-}
-\section{References}{
-
 }
 \seealso{
 options
@@ -78,6 +76,5 @@ printBanner("This is a pretty banner", banner.width=40, char.perline=30)
 #         This is a pretty banner
 # ========================================
 }
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 37351.

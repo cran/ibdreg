@@ -1,9 +1,12 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/14 19:39:26 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/create.pairs.frame.Rd,v 1.1 2008/10/14 19:39:26 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:05:44 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/create.pairs.frame.Rd,v 1.2 2010/02/08 18:05:44 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %$Log: create.pairs.frame.Rd,v $
+%Revision 1.2  2010/02/08 18:05:44  sinnwell
+%rm empty sections
+%
 %Revision 1.1  2008/10/14 19:39:26  sinnwell
 %Initial revision
 %
@@ -58,21 +61,8 @@ frames are id.df (3-columns of ped.id, person1.id, person2.id), y.mat
 (3-columns for AA, UU, or AU status for the pair), x.mat (model matrix
 with intercept and, if covariates in formula, columns for covariates).
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{create.ibd.dat}}
 }
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.

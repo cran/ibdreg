@@ -1,6 +1,6 @@
 % $Author: sinnwell $ -->
-% $Date: 2008/10/15 16:27:21 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plot.ibdreg.unexpect.Rd,v 1.2 2008/10/15 16:27:21 sinnwell Exp $ -->
+% $Date: 2010/02/08 18:19:59 $ -->
+% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/plot.ibdreg.unexpect.Rd,v 1.3 2010/02/08 18:19:59 sinnwell Exp $ -->
 % $Locker:  $ -->
 % 
 %Log: $
@@ -37,22 +37,9 @@ extra parameters for the plot method.  This method looks for a
 \value{
 nothing is returned
 }
-\section{Side Effects}{
-
-}
-\details{
-
-}
-\section{References}{
-
-}
 \seealso{
 \code{\link{plot.ibdreg}},
 \code{\link{ibdreg}}
 }
-\examples{
-
-}
-\keyword{}
 % docclass is function
 % Converted by Sd2Rd version 43267.
