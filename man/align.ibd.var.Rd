@@ -1,0 +1,44 @@
+\name{align.ibd.var}
+\alias{align.ibd.var}
+\title{
+  align ibd.var object with relative pairs within pairs.frame object
+}
+\description{
+align ibd.var object with relative pairs within pairs.frame object
+}
+\usage{
+align.ibd.var(id.df, ibd.var, epsilon=1e-5)
+}
+\arguments{
+\item{id.df }{
+a data.frame containing the three id columns (ped.id, person1.id,
+person2.id) from a pairs.frame object
+}
+\item{ibd.var }{
+an ibd.var object
+}
+\item{epsilon}{
+cutoff for singular values in a generalized inverse (Ginv)
+}
+}
+\value{
+a list resembling an ibd.var object
+}
+\section{Side Effects}{
+
+}
+\details{
+
+}
+\section{References}{
+
+}
+\seealso{
+
+}
+\examples{
+
+}
+\keyword{}
+% docclass is function
+% Converted by Sd2Rd version 1.21.
