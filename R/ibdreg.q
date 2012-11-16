@@ -73,10 +73,10 @@ ibdreg <- function(formula,
 # CHECK INPUT PARAMETERS
 #--------------------------------------------------------- 
   # check classes of ibd.var and ibd.dat objects
-  if(!sr.class(ibd.var)[1]=='ibd.var')
+  if(!class(ibd.var)[1]=='ibd.var')
     stop(paste(deparse(substitute(ibd.var)), " must be an object with class ibd.var"))
 
-  if(!sr.class(ibd.dat)[1]=='ibd.dat')
+  if(!class(ibd.dat)[1]=='ibd.dat')
     stop("ibd.dat must be an object with class ibd.dat")
     ibd.dat.names <-  c("ped.id", "person1.id", "person2.id",
                             "post0", "post1", "post2", "prior0", "prior1", "prior2")
@@ -270,7 +270,7 @@ ibdreg <- function(formula,
                      AU.linkage=AU.linkage,
                      ALL.linkage=ALL.linkage)
 
-  sr.class(ibdreg.obj) <- c("ibdreg", "list")
+  class(ibdreg.obj) <- c("ibdreg", "list")
   
   return(ibdreg.obj)
   

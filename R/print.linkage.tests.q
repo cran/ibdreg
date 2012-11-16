@@ -39,7 +39,7 @@ print.linkage.tests <- function(x, digits = max(options()$digits - 2, 5), show.m
   # Tests include linkage-only
   # and additional tests with covariates if x$ncov > 1
 
-  if(sr.class(x)[1] != "linkage.tests") stop("x must be a linkage.tests object")
+  if(class(x)[1] != "linkage.tests") stop("x must be a linkage.tests object")
 
   index <- 1:nrow(x$linkage.frame)
 

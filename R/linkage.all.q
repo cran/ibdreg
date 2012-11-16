@@ -116,7 +116,7 @@ linkage.all <- function(
                 dof3=rep(3,npos), pval.all=pval.all)
               )
 
-  sr.class(obj) <- "linkage.all"
+  class(obj) <- "linkage.all"
 
   return(obj)
 

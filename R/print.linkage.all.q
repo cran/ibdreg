@@ -20,7 +20,7 @@ print.linkage.all <- function(x,
                               digits=max(options()$digits - 2, 5),
                               ...) {
 
-  if(sr.class(x)[1] != "linkage.all") stop("x must be a linkage.all object")
+  if(class(x)[1] != "linkage.all") stop("x must be a linkage.all object")
   test.df.names <-  c("pos(cM)", "Score Test", "d.f.", "pvalue")
   all.frame <- minpRows(obj=data.frame(x$all.frame[,1:2],
                           apply(x$all.frame[,3:6], 1, paste, collapse=":"),

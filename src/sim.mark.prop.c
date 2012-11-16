@@ -19,6 +19,14 @@
 #include <stdio.h>
 #include <math.h>
 
+/* JPS, building the package for R 2.15.2 11/1/2012:
+   note that printped .c should be copied into here if we want to be able 
+   to print a whole pedigree. It is left out of the R package
+   because of the printf statements, which could be changed to REprintf, but
+   that requires including R.h, which causes many problems with the free and
+   alloc functions that Dan Folie defines here instead of there
+*/
+
 /* This file contains the C routines called by the sim.mark.prop() S-PLUS     */
 /* function                                                                   */
 
@@ -84,67 +92,6 @@ static struct pedigreeData
   long     *cm;                      /* The vector form of CM passed from S   */
   struct pedigree *ped;              /* Points to current pedigree structure  */
 };
-
-static void printped(struct pedigreeData *pedData)
-{
- struct person **personNodes = pedData->ped->personNodes;
- struct person *subject;
- struct marriage *currentMarriage;
- struct children *currentChild;
- long i;
-
- for(i = 1; i <= pedData->n; i++)
-    {
-     subject = personNodes[i];
-     printf("Subject %d:\n", subject->id);
-
-     if(subject->nuclearFamily == NULL)
-       printf("Spouses: NONE\n");
-     else
-        {
-         if(subject->sex == MALE)
-           { currentMarriage = subject->nuclearFamily;
-             while(currentMarriage != NULL)
-               { 
-                printf("Spouse: %d\n", currentMarriage->wife->id);
-                currentChild = currentMarriage->child;
-                printf("Children: ");
-                while(currentChild != NULL)
-                  {
-                   printf("%d ", currentChild->firstChild->id);
-                   currentChild = currentChild->nextChild;
-                 }
-                printf("\n");
-                currentMarriage = currentMarriage->nextHusbandMarriage;
-               }
-           }       
-
-         if(subject->sex == FEMALE)
-           { currentMarriage = subject->nuclearFamily;
-             while(currentMarriage != NULL)
-               { 
-                printf("Spouse: %d\n", currentMarriage->husband->id);
-                currentChild = currentMarriage->child;
-                printf("Children: ");
-                while(currentChild != NULL)
-                  {
-                   printf("%d ", currentChild->firstChild->id);
-                   currentChild = currentChild->nextChild;
-                  }
-                printf("\n");
-                currentMarriage = currentMarriage->nextWifeMarriage;
-               }
-           }
-     if(subject->parents == NULL)
-       printf("Parents: NONE\n");
-     else
-       printf("Parents: %d %d\n",subject->parents->husband->id,subject->parents->wife->id);
-     printf("subject->traverseStatus = %d\n", subject->traverseStatus);
-     printf("subject->computeStatus = %d\n", subject->computeStatus);          
-        }
-     printf("\n");
-    }
-}
 
 static struct pedigree *generate_pedigree(struct pedigreeData *pedData);
 static void generate_markers_autosomal(struct person *subject,

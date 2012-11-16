@@ -24,7 +24,7 @@ print.ibd.var <- function(x,
                           ...) {
 
   # check ibd.var class
-  if(!match("ibd.var", sr.class(x))) stop("Not an ibd.var object\n")
+  if(!match("ibd.var", class(x))) stop("Not an ibd.var object\n")
 
   
   ##-- if ped.id is NULL and sinkfile is NULL, don't print anything--TOO BIG
@@ -51,7 +51,7 @@ print.ibd.var <- function(x,
     }
     
     cat(paste("Sinking all pedigree ibd.var data to file", sinkfile, "...\n"))
-    sr.class(x) <- "list"
+    class(x) <- "list"
     sink(sinkfile)
     print(x, digits=digits)
     sink()

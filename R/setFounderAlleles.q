@@ -58,12 +58,12 @@ setFounderAlleles <- function(ped, x.linked=FALSE)
 
 	chrom1[founder & male,  ] <- a1.male
         chrom1[founder & (!male), ] <- a1.female
-	sr.class(chrom1) <- "model.matrix"
+	class(chrom1) <- "model.matrix"
 
 	chrom2[founder & male,  ] <- a2.male
         chrom2[founder & (!male), ] <- a2.female
 
-	sr.class(chrom2) <- "model.matrix"
+	class(chrom2) <- "model.matrix"
 	ped <- data.frame(ped, chrom1 = chrom1, chrom2 = chrom2)
 	return(ped)
 }

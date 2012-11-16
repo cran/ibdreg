@@ -1,4 +1,4 @@
-## $Id: resources.q,v 1.3 2008/10/15 19:57:55 sinnwell Exp $
+## $Id: resources.q,v 1.1.1.1 2011/02/24 14:16:27 sinnwell Exp $
 ##
 
 ## S: Beth Atkinson and SR: Jason Sinnwell
@@ -15,7 +15,7 @@
 #  mat <- 2*mat
 #})
 
-resources <- function(expr) {
+resources <- function(expr, doPrint=TRUE) {
 
 # Returns and prints the following information for the current S-PLUS session.
 # Note: All times are expressed in units of seconds.
@@ -34,25 +34,16 @@ resources <- function(expr) {
   on.exit(cat("Timing stopped at:", proc.time() - time, "\n"))
   expr <- substitute(expr)
   stime <- proc.time()
-  if(is.R()) {
-    mem1 <- gc(reset=TRUE)
-    w <- eval(expr, envir=loc)
-  } else {
-    mem.tally.reset()
-    w <- eval(expr, local=loc)
-  }
 
+  mem1 <- gc(reset=TRUE)
+  w <- eval(expr, envir=loc)
+ 
   etime <- proc.time()
 
-  if(is.R()) {
-    mem2=gc(reset=TRUE)
-    mem <- data.frame(mem2[2,1]-mem1[2,1])
-    names(mem) <- "Vcells"
-
-  } else {
-    mem <- data.frame(mem.tally.report()[2])
-    names(mem) <- "Working"
-  }
+  mem2=gc(reset=TRUE)
+  mem <- data.frame(mem2[2,1]-mem1[2,1])
+  names(mem) <- "Vcells"
+ 
 
   on.exit()
   
@@ -60,11 +51,14 @@ resources <- function(expr) {
   if(length(etime)==3) etime <- c(etime,0,0)
   time <- etime-stime
   time[3] <- max(time[3], time[1] + time[2])
-  print(data.frame(CPU = time[1] + time[2],
+  df <- data.frame(CPU = time[1] + time[2],
           Elapsed=time[3],
           CPU.pct=round((100*(time[1]+time[2]))/time[3],4),
           Child=time[4]+time[5],
-          mem))
-  invisible(w)
-
+          mem)
+  if(doPrint) {
+    print(df)
+  }
+  invisible(df)
+    
 }

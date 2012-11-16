@@ -89,7 +89,7 @@ ibd.df.merlin <- function(ibd.dat){
 
   
 # data.frame methods need to work on ibd.df
- # sr.class(dat) <- c("ibd.df", "data.frame")
+ # class(dat) <- c("ibd.df", "data.frame")
 
   return(dat)
 

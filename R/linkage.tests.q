@@ -207,7 +207,7 @@ linkage.tests <- function(
   }
 
   
-  sr.class(obj) <- c("linkage.tests", "list")
+  class(obj) <- c("linkage.tests", "list")
 
   return(obj)
 

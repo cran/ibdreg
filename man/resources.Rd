@@ -7,19 +7,22 @@
 track system resources during evaluation of an expression
 }
 \usage{
-resources(expr)
+resources(expr, doPrint=TRUE)
 }
 \arguments{
 \item{expr}{
 An expression to be evaluated by eval() within the sys.parent()
 evaluation frame.
 }
-
+\item{doPrint}{
+Logical, print the resource information in the call?
+}
 }
 \value{
-Nothing is returned.  The expression is evaluated and details are
-printed for CPU time, overall time, child process time, and heap 
-space memory usage.
+  Return the data frame that is printed by default if the object is
+  saved to a value (via invisible()). The expression is evaluated and
+  details are printed for CPU time, overall time, child process time,
+  and heap space memory usage.
 }
 \details{
 The resources given by Venebles and Ripley had reported both Cache and

@@ -182,7 +182,7 @@ create.ibd.dat <- function(postfile,          # ibd file with all loci, all alle
   }
   
   
-  sr.class(ibd.df) <- c("ibd.dat" , "data.frame")
+  class(ibd.df) <- c("ibd.dat" , "data.frame")
   
   ibd.df
   

@@ -64,7 +64,7 @@ exact.ibd.var <- function(file){
     list.index <- list.index+1
   }
 
-  sr.class(var.lst) <- c("ibd.var", "list")
+  class(var.lst) <- c("ibd.var", "list")
   return(var.lst)
   
 }

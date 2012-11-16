@@ -12,21 +12,25 @@
 #
 #
 
-.First.lib <- function(lib, pkg) {
-   if(is.R()) library.dynam("ibdreg", pkg, lib)
-   
-   
-## below:extra commands from arp.gee that move perl scripts into R
-## may be needed for getting Allegro or Genehunter output here
-# get perl script lines into an object
-# assign that object as a value in the arp.gee frame
-#   gh.pl <- readLines(paste(lib, pkg,
-#                       "exec/parse.genehunter.ibd.pl", sep="/"), n=-1)
-#   merlin.pl <- readLines(paste(lib, pkg,
-#                       "exec/parse.merlin.pl", sep="/"), n=-1) 
-#   pos <- (1:length(search()))[search() == "package:arp.gee"]
- 
-#   assign("parse.genehunter.ibd.pl", gh.pl , pos = pos)
-#   assign("parse.merlin.pl", merlin.pl , pos = pos)
-   
- }
+.onLoad <- function(lib, pkg) {
+   library.dynam("ibdreg", pkg, lib)
+}
+
+.onAttach <- function(lib, pkg) {
+   library.dynam("ibdreg", pkg, lib)
+}
+
+##.First.lib <- function(lib, pkg) {
+##
+##library.dynam("ibdreg", pkg, lib)
+##}
+
+
+.Last.lib <- function(libpath) {
+  library.dynam.unload("ibdreg", libpath)
+}
+
+.onUnload <- function(libpath) {
+  library.dynam.unload("ibdreg", libpath)
+}
+

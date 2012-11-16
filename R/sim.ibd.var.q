@@ -81,6 +81,6 @@ sim.ibd.var <- function(pedfile, male.code=1, female.code=2,
        save[[i]]$sv <- tmp$sv
      }   
 
-   sr.class(save) <- c("ibd.var", "list")
+   class(save) <- c("ibd.var", "list")
    return(save)
  }
