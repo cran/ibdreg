@@ -1,4 +1,4 @@
-0c726e5e32a24cece605dd9c95b05712 *DESCRIPTION
+d95247bdaf32ba61a4e6c90096371e7b *DESCRIPTION
 27bf59c2a37bff07a78c9730061e532b *LICENSE
 6a1d7de4f64a74e51469d619b05e30bc *NAMESPACE
 3c3314613f983d73f7a4e47e79fd51ca *R/Ginv.R
@@ -37,7 +37,7 @@ f9e43bc844bce718e16b3e6e293e7a85 *R/setFounderAlleles.q
 447b635fa0ca8b7066a0f4862cade7a1 *R/sim.ibd.setup.q
 88d503e80aaa027a81f6bcca016953f0 *R/sim.ibd.var.q
 7ed5f7e847b363ffef7e999f9b03ab21 *R/sim.mark.prop.q
-22703b57b4838ae561e8a33f09f35c06 *R/zzz.ibdreg.q
+0654adc303de483632bf6845266f4323 *R/zzz.ibdreg.q
 5999a3cb4c109c28cc39aba504ef087a *inst/NEWS.Rd
 d368405f1c604912f51ba286eed9944a *inst/doc/GPL.txt
 a76a669bd962800e876c2e6d9d2696ea *inst/doc/manualIBDReg.pdf

@@ -12,23 +12,14 @@
 #
 #
 
-.onLoad <- function(lib, pkg) {
-   library.dynam("ibdreg", pkg, lib)
-}
+#.onLoad <- function(lib, pkg) {
+#   library.dynam("ibdreg", pkg, lib)
+#}
 
-.onAttach <- function(lib, pkg) {
-   library.dynam("ibdreg", pkg, lib)
-}
+#.onAttach <- function(lib, pkg) {
+#   library.dynam("ibdreg", pkg, lib)
+#}
 
-##.First.lib <- function(lib, pkg) {
-##
-##library.dynam("ibdreg", pkg, lib)
-##}
-
-
-.Last.lib <- function(libpath) {
-  library.dynam.unload("ibdreg", libpath)
-}
 
 .onUnload <- function(libpath) {
   library.dynam.unload("ibdreg", libpath)
