@@ -99,8 +99,9 @@ create.pairs.frame <- function(ibd.dat,
   if(length(formula.terms)) {
     for(term in formula.terms) {
 
-      # split up the term by an open paren '(', use S::unpaste R::strsplit
-      split.term <- strsplit(term, split='(')
+      ## split up the term by an open paren '(', use S::unpaste R::strsplit
+      ## fixed=TRUE suggested 3/2013 by Claire Simpson
+      split.term <- strsplit(term, split='(',fixed=TRUE)
       
       # extract the function name to apply to the covariate pair
       fname <- split.term[[1]][1]

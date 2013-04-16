@@ -41,7 +41,7 @@ struct pedigreeData *pedData = NULL;
 
 /* Represents a person in a generated pedigree                                */
 
-static struct person
+struct person
 { struct marriage  *parents;              /* Parents' marriage node           */
   struct marriage  *nuclearFamily;        /* Person's first marriage node     */
   long              sex;		  /* M or F depending on sex          */
@@ -54,7 +54,7 @@ static struct person
 
 /* Represents a marriage in a generated pedigree                              */
 
-static struct marriage
+struct marriage
 { struct person    *husband;	          /* Husband in this marriage         */
   struct person    *wife;                 /* Wife in this marriage	      */
   struct children  *child;                /* Children from this marriage      */
@@ -64,14 +64,14 @@ static struct marriage
 
 /* Represents a linked list of children in a marriage                         */
 
-static struct children
+struct children
 { struct person    *firstChild;		  /* First child		      */
   struct children  *nextChild;		  /* Next child			      */
 };
 
 /* Represents a pedigree                                                      */
 
-static struct pedigree
+struct pedigree
 { struct person    *proband;              /* Proband of the pedigree          */
   long              n;                    /* Number of people in the pedigree */
   struct person   **personNodes;          /* People in the pedigree           */
@@ -80,7 +80,7 @@ static struct pedigree
 /* Represents a conglomeration of all the data required/generated for a       */
 /* pedigree                                                                   */
 
-static struct pedigreeData
+struct pedigreeData
 { long     *father;                  /* Father ID's                           */
   long     *mother;		     /* Mother ID's                           */
   long     *person;                  /* Person ID's                           */

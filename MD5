@@ -1,4 +1,4 @@
-d95247bdaf32ba61a4e6c90096371e7b *DESCRIPTION
+6b1074e1b9b09626bcd5f3383d149644 *DESCRIPTION
 27bf59c2a37bff07a78c9730061e532b *LICENSE
 6a1d7de4f64a74e51469d619b05e30bc *NAMESPACE
 3c3314613f983d73f7a4e47e79fd51ca *R/Ginv.R
@@ -6,7 +6,7 @@ da00d790b86e88df9a7441c2fd0186bd *R/align.ibd.var.q
 3ba56b64c55320241d1bd370716152c7 *R/chibar3.w.q
 9cb27ea687f6acf0cd2db4e1dad8881e *R/create.ibd.dat.q
 7857ef210b764d1f08c96b5494ce3b83 *R/create.pairs.frame.cvec.q
-3d27060f9fb360088bcde3f0b222d312 *R/create.pairs.frame.q
+5263c5bd73393e2b7075bb049c0cadda *R/create.pairs.frame.q
 e4afcf095b0b01fddb493cd8bf084a30 *R/exact.ibd.var.q
 bb31c0158c648095b7134d4244ac7bc7 *R/ibd.df.merlin.q
 15ea877d29d5723e8cffd68ee9520b47 *R/ibd.moments.q
@@ -32,7 +32,7 @@ e55e09fb4e4b5ccb8f2931fbd85fc485 *R/print.ibdreg.q
 8e172c0e2d0ee3d4a8dedea462d1306e *R/print.linkage.all.q
 087ed7433315a6c7000c452697fbc4fe *R/print.linkage.tests.q
 ac041fc616815527ef260c22d8cdd77a *R/printBanner.q
-033dc9145bafbe2d1cf690c04e40ccf8 *R/resources.q
+974a07ed1259765abfcdf0215443f7c4 *R/resources.q
 f9e43bc844bce718e16b3e6e293e7a85 *R/setFounderAlleles.q
 447b635fa0ca8b7066a0f4862cade7a1 *R/sim.ibd.setup.q
 88d503e80aaa027a81f6bcca016953f0 *R/sim.ibd.var.q
@@ -76,5 +76,5 @@ a31859e2d359ec4aaa7fbbe4958be65c *perl/gws.merlin.ibd.pl
 f3e6a55d104c21d753f1d26f908c099e *perl/merlin.post.ibd.pl
 1b2fd16a99e3a0bcf0ced3b6b8ef9809 *perl/merlin.prior.ibd.pl
 253cdd482b07d5e640b59364a304b9c0 *src/lsConstrain.c
-ed1cacad8ae54f70022e0bb89386b8cb *src/mcmemory.h
-e9fcdae4746f5aa441276588921aa17c *src/sim.mark.prop.c
+46b60d79a180c4b8a31b21d5ab3cba8c *src/mcmemory.h
+c37ce6b54c404bbe74391ba6d2ec5ca3 *src/sim.mark.prop.c

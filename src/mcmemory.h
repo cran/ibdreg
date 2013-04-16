@@ -5,7 +5,7 @@
 #define Calloc(l,s) mc_calloc((l),(s))
 #define Free(p) mc_free(p)
 
-static struct mcMemory
+struct mcMemory
 { void *firstMemory;
   struct mcMemory  *nextMemory;
 };
@@ -348,7 +348,7 @@ static void *mc_malloc_local(size_t size,
     }
 }
 
-static long mc_free_local(void *memory2free,
+static void mc_free_local(void *memory2free,
                           struct mcMemory **memoryStart, 
                           struct mcMemory **memoryEnd)
 {

@@ -29,21 +29,22 @@ resources <- function(expr, doPrint=TRUE) {
 #   systemtimech - System elapsed times in child processes.
 #   mem - maximum memory allocated by the process
 
-  loc <- sys.parent(1)
-  if(loc == 1) loc <- FALSE
+
+
+  #loc <- sys.parent(1)
+  #if(loc == 1) loc <- FALSE
   on.exit(cat("Timing stopped at:", proc.time() - time, "\n"))
   expr <- substitute(expr)
   stime <- proc.time()
-
+  
   mem1 <- gc(reset=TRUE)
-  w <- eval(expr, envir=loc)
- 
+  w <- eval(expr)#, envir=loc) 
+
   etime <- proc.time()
 
   mem2=gc(reset=TRUE)
   mem <- data.frame(mem2[2,1]-mem1[2,1])
   names(mem) <- "Vcells"
- 
 
   on.exit()
   
@@ -62,3 +63,5 @@ resources <- function(expr, doPrint=TRUE) {
   invisible(df)
     
 }
+
+
