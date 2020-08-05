@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include <S.h> 
+#include <R.h> 
 
 #define long unsigned
 

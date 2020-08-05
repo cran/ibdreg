@@ -1,0 +1,901 @@
+%$Author: sinnwell $
+%$Date: 2006/11/30 21:52:32 $
+%$Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/manualIBDReg.Rnw,v 1.2 2006/11/30 21:52:32 sinnwell Exp sinnwell $
+%$Id: manualIBDReg.Rnw,v 1.2 2006/11/30 21:52:32 sinnwell Exp sinnwell $
+%$Locker: sinnwell $
+%$Log: manualIBDReg.Rnw,v $
+%Revision 1.2  2006/11/30 21:52:32  sinnwell
+%for release 0.1.0 in early December
+%
+
+
+%\VignetteIndexEntry{ibdreg}
+%\VignetteKeywords{ibd, linkage, heterogeneity}
+%\VignetteDepends{ibdreg}
+%\VignettePackage{ibdreg}
+%\usepackage{Sweave}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{graphicx,ae,fancyvrb}
+\IfFileExists{upquote.sty}{\RequirePackage{upquote}}{}
+\setkeys{Gin}{width=0.8\textwidth}
+
+\RequirePackage{fancyvrb}
+
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontfamily=courier,
+  fontshape=sl, fontseries=b, xleftmargin=.15cm}
+
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{fontfamily=courier,
+  fontshape=sl, xleftmargin=.05cm}
+
+\newenvironment{Schunk}{}{}
+
+\documentclass[11pt]{article}
+\def\version{version 0.1.2}
+\def\Rversion{version 2.7.1}
+\def\Sversion{version 8.0.1}
+\def\pack{{\sf ibdreg}}
+\def\func{{\sl ibdreg()}}
+\def\Explain{\paragraph{\large {\bf Explanation of Results \vspace{.1in}} \\}}
+
+
+
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\textheight 7.7in
+
+\title{{\bf ibdreg } \\
+(\version) \vspace{.25in}\\
+Regression methods to test for linkage with covariates using IBD
+data from relative pairs \vspace{1.5in}\\
+}
+
+\author{Jason P. Sinnwell and Daniel J. Schaid \\
+Mayo Clinic, Rochester MN USA \vspace{.25in} \\}
+
+
+\date{{\today}}
+\begin{document}
+
+\maketitle
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\section{Description}
+The \pack\ package is a suite of S-PLUS/R routines for the analysis 
+of genetic linkage with covariates by regression methods
+that use identity by descent (IBD) sharing probabilities for relative 
+pairs.  The methods account for correlations of IBD statistics for 
+relative pairs within the same pedigree.
+
+The tests for genetic linkage use quasi-likelihood score statistics,
+formulated in terms of weighted least squares regression.
+The covariates in the regression framework are scaled according to the
+degree of relationship between relatives in a pair, so relatives pairs 
+have an appropriate weight in the regression. The method yields the following 
+tests: 
+
+\begin{itemize}
+\item{{\sl Linkage}}
+\item{{\sl Linkage with covariate effects}}
+\item{{\sl Effect of covariate on IBD sharing }}
+\end{itemize}
+
+These tests are applied to relative pairs that are of specific 
+affection status: Affected-Affected (AA), Unaffected-Unaffected (UU),
+and Affected-Unaffected (AU). In the same framework, it is possible to
+test linkage using all relative pairs while imposing constraints on 
+excess allele sharing in the direction expected under linkage. 
+
+
+\section{Operating System and Installation}
+The \pack\ package \version\ is written for both S-PLUS (\Sversion) and 
+R (\Rversion) for Unix and Windows.  It has been placed on the Comprehensive R 
+Archive Network (CRAN), and is made available on other systems through
+CRAN. Installation procedures for S-PLUS and R systems will vary; the 
+Unix installations are explained in the {\sl README.ibdreg} text file,
+located at the top level of the \pack\ directory.
+
+It is assumed that users have a general working knowledge of the S
+language.  Some of the basic steps in using \pack\ will be confusing
+without a general knowledge of the S language.  Users who are new to S-PLUS 
+or R, please refer to Venebles and Ripley\cite{Venebles Ripley}, and
+introductory guides on the Insightful\cite{Insightful} and 
+R Project\cite{Rhome} home pages.
+
+The procedures for running analyses in \pack\ are the same for S-PLUS and R,
+following instructions in this document.
+
+\section{Installing and Loading the Library}
+To install \pack\ for S-PLUS or R, refer to
+instructions given in {\sl README.ibdreg}.  The package may be
+installed for global or local use on your system.  After installing the 
+\pack\ library, the routines are available by starting a session and 
+attaching the appropriate directory using {\sl library()} as
+illustrated below.
+
+<<echo=FALSE, eval=TRUE>>=
+options(width=60)
+cat("## if local library, use: \n\t library(ibdreg, lib.loc=\"/your/local/path/\")\n")
+
+if(any(objects()=="pairSum")) rm(pairSum)
+if(any(objects()=="pairDiff")) rm(pairDiff)
+
+@
+<<echo=TRUE>>=
+# load the library, load and preview at demo dataset
+library(ibdreg)
+
+@
+
+\section{Data Setup }
+
+The methods within \pack\ require initial setup of three data objects:
+
+\begin{itemize}
+\item{{\sl data }} \ \ A data frame that includes a row for each
+  person, with pedigree ID, person ID, affection status, and other
+  covariates.
+\item{{\sl ibd.dat}}\ \ An object that includes a row for each
+  relative pair with the IBD sharing probabilities.  This object
+  includes pedigree and person identifiers for the relative pairs, 
+  the null prior probabilities of sharing 0, 1, or 2 alleles IBD 
+  for the relative pairs, and the estimated 
+  posterior probabilities of sharing 0, 1, or 2 alleles IBD at each 
+  position on a chromosome.
+\item{{\sl ibd.var}}\ \ A list containing one entry for each pedigree. 
+  The entry comprises pedigree and person identifiers, and the 
+  variance-covariance matrix of IBD statistics for pairs of relative pairs.
+\end{itemize}
+
+The examples in this manual use data from a linkage study for prostate
+cancer. The data show linkage on chromosome 20, and use the covariates
+diagnosis age ({\sl dxage}) and tumor grade ({\sl grade}).
+The \pack\ package is not provided with example data because the files
+are too large.
+
+\subsection{Covariate Data Frame ({\sl data})}
+
+First, because \pack\ uses data for each person to construct
+pair-specific covariates, a data frame containing the covariates 
+for each person is needed. This data frame must have 
+columns that represent pedigree id, person id, and affection status.
+The two identifiers (pedigree id and person id) must uniquely identify
+each person in the data frame. The column for affection status 
+must be coded as 2 for affected, 1 for unaffected, and {\sl NA} for
+unknown. The {\sl NA} is a special code for missing values in S-PLUS
+and R; missing values in the covariate columns must also be coded 
+to {\sl NA}.
+
+In the example below, {\sl read.table} is used to read in fields to {\sl cov.data} 
+from a comma-delimited file, {\sl ``cov.data.csv''}, where each row 
+represents one subject, and the first row 
+contains the column names.  The {\sl names} function is used on {\sl cov.data} to 
+check that the column names are as expected.  The required columns
+mentioned above are named {\sl ped.id} (pedigree id), {\sl person.id} (personal id), 
+and {\sl pcstat} (affection status).
+
+<<echo=TRUE>>=
+
+cov.data <- read.table("cov.data.csv", sep=",", header=TRUE)
+
+names(cov.data)
+
+@
+
+
+\subsection{Creating IBD Files with Merlin and PERL Scripts \label{makeIBD}}
+
+To facilitate use of this S-PLUS/R library, a number of PERL scripts are 
+provided within the {\sl ibdreg/perl} subdirectory. These scripts must be run 
+outside of S-PLUS/R. Two file types are required for \pack: 
+{\bf (1)} posterior IBD probability file for relative pairs (a file 
+for each specified chromosome), {\bf (2)} prior IBD probability file 
+for relative pairs (one for autosomes, and one for the X chromosome).  
+
+The two file types can be generated by either Genehunter\cite{genehunter}, 
+Allegro\cite{allegro}, or Merlin\cite{merlin}. All provided PERL
+scripts assume use of Merlin, but they can be altered for use of other
+software.
+
+The input files to the PERL scripts are the LINKAGE formatted files. We 
+refer to these files as the ``par'' file (for loci parameter descriptions; 
+called the DATAFILE in LINKAGE documentation) and the ``pre'' file (the 
+pedigree information along with genotypes; called the PEDFILE in
+LINKAGE documentation).  We call the second input file ``pre'' because the 
+file format is the pre-MAKEPED format. These pre and par file formats are 
+the standard formatted files for input to GENEHUNTER.
+
+Two PERL scripts perform separate tasks of creating the two file types
+listed above, {\sl merlin.post.ibd.pl} and {\sl merlin.prior.ibd.pl}.  An additional script, 
+{\sl gws.merlin.ibd.pl}, is a "master" script that controls the other two scripts 
+to make files for the posterior and prior IBD files needed for a
+genome-wide linkage scan using \pack.
+
+The master script uses specific directory names and file name signatures which 
+may need to be changed by the user. The script expects pre and par files to be 
+in a subdirectory named {\sl INPUTDIR}, and the posterior and prior IBD output files 
+are placed in directories {\sl PostIBD} and {\sl PriorIBD}, respectiviely. 
+The "signature" naming patterns expected for the pre and par files for 
+chromosome k are ``ch.[k].pre'' and ``ch.[k].par'', respectively. The
+signature naming pattern for output files are ``chr[k].post.ibd'' and 
+``chr[k].prior.ibd''.  Note that prior probabilities are only generated 
+for chromosomes 1 and 23 (X) because the prior probabilities are the 
+same for all autosomes (chromosomes 1 - 22).
+
+The other two scripts should not require editing, unless one wishes to 
+change the optional parameters that control Merlin, such as the spacing of 
+calculations along the chromosomes, or how probable genotype errors are 
+handled. Currently, calculations are for 1 cM intervals along each 
+chromosome, and probable genotype errors are "wiped out" using Merlin's 
+pedwipe step. These scripts are briefly described below.
+
+The {\sl merlin.post.ibd.pl} script sets up the files needed for Merlin to 
+compute the posterior IBD probabilities. Note that this script runs Merlin 
+and Pedwipe to use only "cleaned" genotypes: first Merlin is run to check 
+for likely errors, then Pedwipe is run to remove them, then Merlin is run a 
+second time, without the likely erroneous genotypes, to dump the IBD 
+probabilties to a file. These steps and the Merlin options can easily 
+be modifed as desired.
+
+The {\sl merlin.prior.ibd.pl} script sets up the files needed for Merlin to 
+compute null prior IBD probabilities. This is achieved by creating 
+a dummy homozygous (non-informative) marker for all subjects. The script 
+then runs Merlin to dump the IBD information to a file. The required input 
+is the name of a pre file and the chromosome number (1-23). The Merlin IBD 
+file is then output.
+
+
+\subsection{Identical-By-Descent (IBD) Data ({\sl ibd.dat}) \label{ibd.dat}}
+
+The IBD data created by {\sl gws.merlin.ibd.pl} or {\sl merlin.post.ibd.pl} 
+in section \ref{makeIBD} must be read into S-PLUS/R by the function 
+{\sl create.ibd.dat}. This function makes an object of class 
+{\sl ibd.dat} containing IBD sharing probabilities 
+for relative pairs. The relative pairs within each pedigree are 
+distinguished by a pedigree identifier ({\sl ped.id}) and identifiers for 
+the two relatives ({\sl person1.id, person2.id}).  To make an {\sl ibd.dat} object, 
+specify the two file names with probabilities for posterior IBD ({\sl postfile}) 
+and prior IBD ({\sl priorfile}) created in section \ref{makeIBD}. Two files 
+used here are named ``chr20.post.ibd'' and ``chr1.prior.ibd'', as placed 
+in the {\sl PostIBD} and {\sl PriorIBD} directories, respectively, 
+by {\sl gws.merlin.ibd.pl}.
+
+<<echo=TRUE>>=
+
+ibd.dat.obj <- create.ibd.dat(postfile="./PostIBD/chr20.post.ibd",
+                              priorfile="./PriorIBD/chr1.prior.ibd",
+                              x.linked=FALSE,
+                              cov.data=NULL,
+                              rm.noninform=TRUE)
+names(ibd.dat.obj)
+
+@
+
+The named elements {\sl post0}, {\sl post1}, and {\sl post2}, 
+are N x L data frames containing posterior probabilities of sharing 0,
+1, or 2 alleles IBD for each of the N relative pairs at L positions. 
+The corresponding prior IBD sharing probabilities are vectors {\sl prior0}, 
+{\sl prior1}, and {\sl prior2}.
+
+Some relative pairs are not informative for linkage.  By setting the
+parameter {\sl rm.noninform=TRUE}, {\sl create.ibd.dat} removes
+uninformative relative pairs.  Uninformative pairs are detected if
+their posterior IBD sharing probabilities, at all positions, are equivalent 
+to their prior IBD sharing probabilities. The \func\ function also 
+removes uninformative relative pairs if it detects them.
+
+\subsection{Covariance Matrices for IBD Statistics ({\sl ibd.var}) \label{ibd.var}}
+
+The analyses in \pack\ require an object containing 
+the covariance matrices for IBD sharing statistics within families under the null
+hypothesis of no linkage.  This will be referred to as
+an {\sl ibd.var} class object. This class of object can be estimated
+using simulations or calculated exactly via Merlin.  
+The simulation routine is recommended for large pedigrees, because   
+Merlin cannot handle them.  In addition, the extra steps between
+Merlin and S-PLUS/R leave more room for pitfalls for the user.
+
+\subsubsection{Simulation-Based {\sl ibd.var}}
+
+Within an R or S-PLUS session, the {\sl sim.ibd.var} function makes an {\sl ibd.var} 
+object using the information from a pre file (see section \ref{makeIBD}).  
+The function approximates the joint distribution of IBD sharing 
+statistics by simulating gene-dropping for each pedigree (see Schaid 
+et al. \cite{Schaid 2006}). From many simulated IBD sharing values
+a sample variance-covariance matrix can be estimated under the
+assumption of no linkage.  The {\sl sim.ibd.var} function needs the
+pre file name ({\sl prefile}) and allows the user to choose the
+number of simulations {\sl n.sim}.  Sufficient accuracy is usually
+reached after 10,000 simulations for most pedigrees.
+
+<<echo=FALSE, eval=TRUE>>=
+set.seed(21)
+@ 
+
+<<echo=TRUE, eval=TRUE>>=
+ibd.var.obj <- sim.ibd.var("./INPUTDIR/ch.20.pre", n.sim=10000, 
+                           x.linked=FALSE)
+
+names(ibd.var.obj[[1]])
+@
+
+The {\sl ibd.var} object is a list with an element for each pedigree.
+For each pedigree, in addition to the covariance matrix of the IBD 
+sharing statistics ({\sl sv}), the {\sl ibd.var} object contains the pedigree id 
+({\sl ped.id}), personal identifiers for persons within each relative pair 
+({\sl person1.id, person2.id}), and the mean IBD sharing (assuming no
+linkage) for each relative pair ({\sl sm}).
+
+
+\subsubsection{Exact {\sl ibd.var} (via Merlin) }
+
+Exact values for the variance-covariance matrices of ibd sharing
+statistics within families are made possible through Merlin.  The
+steps are managed by a PERL script named {\sl exact.ibd.var.pl}. 
+The script first adds to the pre file a dummy homozygous marker (as done in 
+{\sl merlin.prior.ibd.pl} in section \ref{makeIBD}). It then runs Merlin 
+with the options {\sl``--ibd --matrices''} to make null prior probabilities for all 
+possible IBD sharing configurations of relatives within each pedigree.  
+These probabilities are used to create the mean vector and
+covariance matrix for IBD sharing statistics, assuming no linkage,
+for all relative pairs within a pedigree. This script 
+uses as input a pre file, the chromosome number (1 or 23) and the name 
+of the output file.  The {\sl gws.merlin.ibd.pl} script has an option
+to run {\sl exact.ibd.var.pl} for chromosomes 1 and 23 if {\sl doExactVar} is set to 1.  
+
+To create the {\sl ibd.var} object, assume you have a file named {\sl ``ibd.var.out''} 
+made from {\sl exact.ibd.var.pl} then use {\sl exact.ibd.var()} as done below.
+
+<<echo=TRUE, eval=FALSE>>=
+ibd.var.ex <- exact.ibd.var("./PriorIBD/ibd.var.out")
+
+@
+
+
+\section{Creating Pair-Specific Covariates and Scaling for 
+Relationships}
+
+When using the \func\ \ routine, one must define pair-specific covariates 
+for the regression framework, as well as choose a scaling factor, 
+both of which are described below.
+
+\subsection{Incorporating Covariates \label{formula}}
+
+The \func\ function is built to work with the modeling capabilities
+of the S language.  This typically means that the function expects the
+first parameter to be a formula where the dependent variable 
+is on the left side, followed by a tilde (\~{}), followed by the independent
+variables on the right side.  The {\sl formula} parameter is accompanied by the {\sl data}
+parameter, which contains all the variables specified in {\sl formula}.
+
+The {\sl formula} parameter in \func\ differs from the above
+standard because {\sl data} contains covariate data for individuals, while the
+dependent variable is more complex than that typically used in
+formulas (i.e., a linear combination of two matrices with IBD posteriors).  The 
+{\sl formula} parameter in \func\ is used to create covariates for relative
+pairs. This provides enormous flexibility, allowing users 
+to create their own functions for making pair-specific covariates. 
+Note that the dependent variable, estimated IBD sharing, is calculated
+from posterior probabilities in {\sl ibd.dat}.  Thus, the {\sl formula} parameter contains 
+only the right side of the regression formula, which can either be
+{\sl \~{}1} (for intercept-only, used for linkage tests without covariates), 
+or user-defined functions that make pair-specific covariates from 
+person-specific covariates in {\sl data}.
+Below are examples of how to make user-defined functions to use in
+{\sl formula}, and a simple illustration of how they work.
+
+<<echo=TRUE>>=
+pairSum <- function(cov1,cov2) { cov1 + cov2 }
+
+pairDiff <- function(cov1,cov2) { abs(cov1 - cov2) }
+
+pairSum(20,30)
+pairDiff(20,30)
+
+@
+
+These two functions are included in \pack, but {\sl formula} can accept any 
+user-defined function that meets the following two restrictions. 
+(1) Input two vectors, which are the same covariate measured on the
+two persons in a relative pair. (2) Output a single vector which does not 
+depend upon order of the input vectors. Furthermore, the syntax in 
+the call of \func\ allows the user to specify the covariate name once or 
+twice, but only the first one is used.  Two different covariate names are 
+not allowed. Here are examples of formulas that \func\ accepts:
+
+\begin{itemize}
+\item{{\sl \~{}1 }}
+\item{{\sl \~{}pairDiff(dxage)}}
+\item{{\sl \~{}pairDiff(dxage,dxage) + pairSum(grade, grade)}}
+\end{itemize}
+
+
+\subsection{Scaling Factors }
+
+The scaling factor described in Schaid et al, 2006\cite{Schaid 2006} is 
+used as a weight for all covariates, so that all relative pairs 
+can be used in the same regression model.  The basic idea is that
+relative pairs who are closely related should have a greater
+weight in a regression than more distant relative pairs.  The parameter to 
+specify scaling factor, {\sl c.scale}, can be either of two options: 
+\begin{itemize}
+\item{{\sl ``minimax'' }} constraint from Goddard and 
+                          Olson \cite{Goddard 2001}
+\item{{\sl ``nodom''}} no dominance variance from Greenwood and Bull
+                        \cite{Greenwood Bull 1999}
+\end{itemize}
+
+For all examples in this manual, the no dominance variance option is used.
+
+\section{Tests for Linkage }
+
+One can test for linkage on either of the AA, UU, or AU relative pair subsets. 
+When linkage exists, pairs within each group are expected to have homogeneous 
+linkage signals, where both AA and UU pairs are expected to share an
+excess of alleles IBD in the presence of linkage, and AU pairs are
+expected to share a deficit of alleles IBD.
+
+The null hypothesis is no linkage and no covariate effect, and the 
+alternative hypothesis is linkage.  In the presence of linkage, IBD
+sharing is expected to deviate from the null hypothesis in only one
+direction, leading to one-sided, or constrained, tests. For all of the
+tests, \func\ performs both the unconstrained and constrained tests. 
+
+The object returned from \func\ is given the class 
+{\sl ibdreg}.  The tests contained in an {\sl ibdreg} object depend 
+on what the user specifies.  The selection of tests is controlled
+by two parameters, {\sl formula} and {\sl status.method}.  {\sl status.method} 
+is the parameter that specifies which affection status group (AA, UU,
+AU, ALL) to test.  For {\sl status.method} of AA, UU, and AU, the
+possible tests are linkage without covariates, linkage with
+covariates, and covariate effects on IBD sharing.  If
+{\sl formula=\~{}1}, linkage without covariates is performed.  If
+a pair-specific covariate is given, then all three tests are
+performed.  If {\sl status.method=ALL}, these same principles apply to
+each of the status groups where the tests are performed on each
+group.  Additionally for ALL, regardless of the formula, a
+constrained test for linkage on ALL pairs is performed. 
+
+Table 1 below shows which tests are performed for each 
+combination of these parameters.  The rows are the tests, the
+columns are the choice of {\sl status.method}, and in each box is a
+code indicating a specified formula.  In the table, {\bf{\sl 1}} represents
+{\sl formula=\~{}1} and {\bf{\sl X}} represents a formula that
+includes pair-specific covariates, as defined in section \ref{formula}.
+
+\begin{center}
+Table 1.  Linkage tests performed according to {\sl status.method}
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+                             & AA \  & UU \  & AU \  & ALL  \\ \hline \hline
+Linkage without Covariate    & 1, X  & 1, X  & 1, X  & 1, X \\ \hline
+Linkage with Covariate(s)    &    X  &    X  &    X  &    X \\ \hline
+Covariate Effect on IBD      &    X  &    X  &    X  &    X \\ \hline
+All Pairs Linkage            &       &       &       & 1, X \\ \hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Linkage without Covariates }
+
+To illustrate testing for linkage without covariates, the basic tests are
+performed first on only AA pairs, and then ALL pairs.
+
+\subsubsection{Linkage on AA Pairs \label{nocovAA}}
+
+The first example is the basic test for linkage without
+incorporating covariates on just the AA relative pairs.  The two 
+parameters used for this analysis are {\sl status.method=''AA''} and 
+{\sl formula = \~{}1}.  For scaling factor of no dominance variance, 
+set {\sl c.scale=''nodom''}.  To specify the data objects for this example, 
+use {\sl data=cov.data}, {\sl ibd.dat=ibd.dat.obj}, and {\sl ibd.var=ibd.var.obj}. To 
+specify the required column names of {\sl cov.data}, use {\sl ped.id=ped.id}, 
+{\sl person.id=person.id}, and {\sl status=pcstat}.
+
+The example below saves the test results of \func\ in {\sl nocov.AA}, and 
+prints the results using the print method ({\sl digits=3} means print 3 
+significant digits).  An explanation of the results follows.
+
+<<echo=TRUE>>=
+#  AA pairs, no covariates (linkage only) 
+
+nocov.AA <- ibdreg(formula = ~1, status.method="AA", c.scale="nodom", 
+                     data=cov.data, status=pcstat, ped.id=ped.id, 
+                     person.id=person.id, 
+                     ibd.dat=ibd.dat.obj, ibd.var=ibd.var.obj, epsilon=1e-5)
+
+print(nocov.AA, digits=3)
+
+@
+
+\Explain
+First, the print method displays the call to \func\ made by the user. 
+Then it recognizes which tests were performed and were saved in the object.
+Since the results in {\sl nocov.AA} were the linkage tests on AA
+pairs, only details for those tests are given.  The first
+section shows the number of pedigrees and relative pairs used in the tests.  The
+``Score Tests for Linkage'' section displays test results for both unconstrained 
+and constrained linkage tests.  The above table shows results for only 
+the maximum score statistic over all chromosome positions (although
+results for all positions are stored in the returned object, {\sl nocov.AA}).  Each line 
+in the above table shows the name of the test, the chromosome position 
+(in centiMorgans) where the maximum score test occured, 
+the score statistic, degrees of freedom, 
+and P-value. Note that the constrained test for linkage is a mixture of 
+chi-square distributions with 0 and 1 degrees of freedom, 
+whereas the unconstrained statistic has a chi-square distribution with 1 
+degree of freedom.
+
+\subsubsection{Linkage on  ALL pairs \label{nocovALL}}
+
+To test linkage without covariates for all relative pairs, use the same 
+parameters as above, except for {\sl status.method=''ALL''}.
+The tests for linkage without covariates will be performed on AA, UU, and 
+AU subsets, then another constrained test for linkage on ALL pairs.  
+This last test constrains the affection-status groups to IBD 
+allele sharing under the assumption of linkage.  Therefore, the test 
+constrains IBD sharing for AU pairs to share less than the null sharing, 
+UU pairs are constrained to share more than the null, and AA pairs are
+constrained to share more than UU pairs.  For more details
+on this test see Schaid et al, 2006 \cite{Schaid 2006}.
+
+
+<<echo=TRUE>>=
+
+# status method = 'ALL' for all pairs
+# linkage-only tests are done on AA, AU, UU,
+# then another constrained linkage test on all pairs at once
+
+nocov.ALL <- ibdreg(formula=~1, status.method="ALL", c.scale="nodom",
+                      status=pcstat, ped.id=ped.id, person.id=person.id, 
+                      data=cov.data, ibd.dat=ibd.dat.obj, 
+                      ibd.var=ibd.var.obj, epsilon=1e-5)
+print(nocov.ALL, digits=3)
+
+@
+
+\Explain
+The print results follow the same format as in section \ref{nocovAA}
+above, except that now there are three sections that show the linkage
+without covariate results for AA, UU, and AU relative pairs.  The last
+section, ``ALL PAIRS'', contains output of a similar format, showing first the 
+counts of pedigrees and relative pairs for all three groups of relative 
+pairs, then the results for the constrained test that uses all relative pairs.  
+Again, the test shown is the maximum score statistic over all chromosome 
+positions.  Note that this test statistic is a mixture of chi-square 
+distributions with 0, 1, 2, and 3 degrees of freedom.
+
+Instead of printing all test results at all chromosome positions, one can 
+view test results at all positions in a plot, with the x-axis the 
+chromosome position, and the y-axis the -log10(pvalue) of the test statistic.
+An example is given in Figure \ref{nocovALLplot} at the end of this document.
+For {\sl nocov.ALL}, the plot method plots the constrained tests for
+AA, UU, and AU pairs, as well as the constrained test that uses all pairs. 
+The color codes are given in the legend in the upper left corner of
+Figure \ref{nocovALLplot}.
+
+\begin{figure}[h]
+  \begin{center} 
+<<fig=TRUE, echo=TRUE>>=
+
+plot(nocov.ALL)
+
+@
+\caption{Linkage without covariates for all ALL, AA, UU, AU pairs \label{nocovALLplot}} 
+  \end{center} 
+\end{figure}
+
+\subsection{Linkage with Covariates \label{covlinkage} }
+
+\subsubsection{Linkage with One Covariate}
+
+To demonstrate linkage tests that include a covariate for 
+relative pairs, the sum of the variable in {\sl data} called {\sl dxage}, 
+``age of diagnosis'' is used.  Since this covariate could not be 
+measured for unaffected relatives, this example only applies to 
+AA relative pairs.  The call to 
+{\sl ibdreg} is similar to the two previous calls, but with 
+{\sl formula=~pairSum(dxage)} to specify the covariate.
+
+<<echo=TRUE>>=
+sum.dxage.AA <- ibdreg(formula=~pairSum(dxage), status.method="AA", c.scale="nodom",
+                 status=pcstat, ped.id=ped.id, person.id=person.id, data=cov.data,
+                 ibd.dat=ibd.dat.obj, ibd.var=ibd.var.obj)
+
+print(sum.dxage.AA, digits=2)
+
+@
+
+\Explain 
+The print results again follow the format of results illustrated in
+section \ref{nocovAA}, except that additional tests were performed.
+In the table of maximum score statistics for each test,
+notice first that the tests for linkage without covariates (labeled
+{\sl w/o Cov}) are the same as in {\sl nocov.AA} results. 
+The next two lines (labeled {\sl w/ Cov}) show the unconstrained and 
+constrained tests for linkage with covariate effect, against the null of no
+linkage.  The distribution of the constrained test is a mixture of chi-square 
+distributions with 0 and 1 degrees of freedom.  The final two tests
+are the unconstrained and constrained tests for covariate effect on
+IBD sharing (using a robust variance in the score test). 
+Both of these test statistics are distributed as chi-square with
+1 degree of freedom.  See Schaid et al, 2006 \cite{Schaid 2006} for more 
+details on the tests performed.
+
+A plot of {\sl sum.dxage.AA} results is illustrated in Figure 
+\ref{sumdxageAAplot} at the end of this document.  The three lines 
+illustrate the constrained tests for linkage without the covariate, linkage 
+with covariate {\sl pairSum(dxage)}, and effect of {\sl pairSum(dxage)} 
+on IBD sharing.
+
+\begin{figure}[h] 
+  \begin{center} 
+<<fig=TRUE, echo=TRUE>>=
+
+plot(sum.dxage.AA)
+
+@ 
+\caption{Plot of tests from pairSum(dxage) on AA pairs } \label{sumdxageAAplot}
+  \end{center} 
+\end{figure}
+
+
+\subsubsection{Linkage with Multiple Covariates}
+
+To demonstrate how multiple covariates can be specified in \func\ using the 
+{\sl formula}, {\sl pairSum} is used for {\sl dxage} and {\sl pairSqDiff} (created below) 
+is applied to {\sl grade} (grade of cancer tissue). The 
+printed results will be similar in format to the results in 
+section \ref{covlinkage}.
+
+<<echo=TRUE, eval=TRUE>>=
+
+pairSqDiff <- function(cov1, cov2) { (cov1-cov2)^2 }
+
+dxage.grade.AA <- ibdreg(formula=~pairSum(dxage) + pairSqDiff(grade), 
+                   status.method="AA", c.scale="nodom",
+                   status=pcstat, ped.id=ped.id, person.id=person.id, 
+                   data=cov.data, ibd.dat=ibd.dat.obj, ibd.var=ibd.var.obj)
+
+print(dxage.grade.AA, digits=3)
+
+@
+
+\section{Troubleshooting \label{trouble} }
+
+\subsection{Unexpected IBD Sharing}
+
+Many calculations in the linkage tests are useful for checking model 
+assumptions. For example, it is assumed that the markers segregate 
+in Mendelian fashion.  If this is violated, linkage
+results could be biased.  One way for markers to deviate from
+Mendelian expectation is when the parental genotypes are missing and
+allele frequencies are misspecified.  This can cause unexpected IBD
+sharing for all types of relative pairs.
+
+One way to find evidence for unexpected allele sharing is to compare the 
+constrained and unconstrained linkage tests.  If all the allele sharing 
+deviates in the direction assumed
+under linkage, the test statistics will be the same, yet the p-values
+for the constrained test will be smaller because the constrained test
+is distributed as a mixture chi-square.  If there is unexpected allele 
+sharing, the unconstrained test for linkage can have a smaller p-value
+than the constrained test.  The two tests are illustrated in 
+Figure \ref{unexpectplot}, at the end of the document.  The figure was
+created using the {\sl plot.ibdreg.unexpect} function for {\sl status.method=``AA''} 
+relative pairs.  The plot shows there is very little evidence of 
+unexpected allele sharing over the whole chromosome for AA pairs. 
+
+\begin{figure}[h] 
+  \begin{center}
+<<fig=TRUE, echo=TRUE>>=
+
+## to plot difference in constrained and unconsrained
+plot.ibdreg.unexpect(nocov.ALL, status.method="AA")
+
+@
+\caption{Plot of Unconstrained versus Constrained Linkage } \label{unexpectplot}
+  \end{center}
+\end{figure}
+
+\subsection{Unexpected IBD Sharing within Pedigrees}
+
+Further details of unexpected allele sharing are available.  The ibdreg
+object contains a matrix with z-scores for allele sharing for each 
+pedigree (columns) at each chromosome position (rows).
+
+One way to use this matrix is to find pedigrees that may have patterns
+of unexpected allele sharing.  For the AA pairs within each family,
+the IBD sharing is unexpected if the z-score is less than zero.  To find a
+pedigree that has unexpected sharing within its AA pairs, one can
+compute the mean z-scores of AA pairs within pedigrees over all 
+positions, illustrated in {\sl ped.mean} below. These can then be
+sorted, and the pedigree identifier can be examined to look at information 
+on the pedigrees whose mean z-score was low for AA pairs. 
+
+<<echo=TRUE, eval=TRUE>>=
+ped.mean <- apply(nocov.ALL$AA.linkage$ped.zscore,2,mean)
+sort(ped.mean)[1:10]
+@
+
+Information on the pedigree with the most unexpected IBD allele sharing for AA
+pairs (ped.id = 39) can be found in both {\sl ibd.var.obj} and 
+{\sl cov.data} as done below.  The {\sl print.ibd.var} function 
+prints the {\sl ibd.var} information for specified pedigrees in 
+{\sl ped.id}.  As shown below, output from {\sl print.ibd.var} is
+long; the {\sl sinkfile} parameter can be used to name a file to sink
+more pedigrees output.
+
+<<echo=TRUE, eval=TRUE>>=
+cov.data[cov.data$ped.id==39,]
+
+print.ibd.var(ibd.var.obj, ped.id=39, sinkfile=NULL, digits=3)
+
+@ 
+
+
+\subsection{Correlation Between IBD Statistics}
+
+There is known to be dependence on the IBD statistics between sets of
+relative pairs, which is why \func\ uses the covariance matrix for
+these statistics.  One specific set of relative pairs is known to have
+complete negative correlation: a grandchild-grandmother and the same
+grandchild with its grandfather.  In this case, if the grandchild shares 
+an allele with the grandmother, the grandchild cannot share an allele 
+with the grandfather.
+
+This scenario can cause the variance-covariance matrix to be less than full
+rank for some pedigrees. The genaralized inverse of these matrices is 
+handled by {\sl Ginv()}, which uses singular value decomposition.  In some 
+instances, warnings may occur that indicate a negative variance
+estimate.  The variance estimate could be negative because of a very
+small singular value that should be considered zero.  In this case, 
+the user can specify the cut-off value for singular values; this can 
+be managed in \func\ with the {\sl epsilon} parameter. It is used in 
+section \ref{nocovALL} when making {\sl nocov.ALL}.
+
+
+\subsection{What Happened to My Data?}
+
+Several elements of the {\sl ibdreg} object were included to keep
+track of relative pairs in the analysis.  It is possible to see how 
+many pairs are within each pedigree in the {\sl relpair.tbl}.  See below 
+the number of relative pairs in the first 10 pedigrees, stored 
+in {\sl relpair.tbl}. Also, the counts of relative pair groups by 
+status of AA, UU, AU are in {\sl status.tbl}.
+
+<<echo=TRUE>>=
+
+names(nocov.ALL)
+
+nocov.ALL$relpair.tbl[1:10]
+
+nocov.ALL$status.tbl
+
+@ 
+
+Relative pairs are not used in the analysis when they are either not 
+informative for linkage, missing affection status, 
+or missing a covariate.  Within the {\sl ibdreg} result, {\sl pairs.rm.df} keeps the
+identifiers for the relative pairs that are removed because they were 
+uninformative or one of the persons had a missing value in {\sl data}.  
+Another data frame with removed data is {\sl data.rm.df}, which has the 
+identifiers for persons who appear in {\sl data}, but not in IBD calculations.
+
+Since the number of removed pairs can be many, the output below presents a print
+of the number of rows in {\sl pairs.rm.df}, just to show the number of 
+relative pairs removed. Likewise, the number of persons in {\sl data.rm.df} 
+is given. 
+
+<<echo=TRUE>>=
+
+nrow(nocov.ALL$pairs.rm.df)
+nrow(nocov.ALL$data.rm.df)
+
+@ 
+
+
+\pagebreak
+
+\section{License and Warranty}
+
+\noindent License:\linebreak
+
+\noindent Copyright 2003 Mayo Foundation for Medical Education and Research. \linebreak
+
+\noindent This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later version.\\
+
+\noindent This program is distributed in the hope that it will be useful, but
+WITHOUT ANY 
+WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License 
+for more details. \\
+
+\noindent You should have received a copy of the GNU General Public License
+along with this program; if not, write to \\
+\noindent Free Software Foundation, Inc. \\
+59 Temple Place, Suite 330 \\ 
+Boston, MA 02111-1307 USA \\
+
+\noindent For other licensing arrangements, please contact Daniel J. Schaid.\\
+Daniel J. Schaid, Ph.D.\\
+Division of Biostatistics\\
+Harwick Building - Room 775\\
+Mayo Clinic\\
+200 First St., SW\\
+Rochester, MN 55905\\
+phone: 507-284-0639\\
+fax:\ \ \ 507-284-9542\\
+email: schaid@mayo.edu\\
+
+
+\section{Acknowledgements}
+This research was supported by United States Public Health Services, 
+National Institutes of Health, contract grant numbers GM67768.
+
+
+\pagebreak
+
+\begin{thebibliography}{}
+
+\bibitem{merlin}
+Abecasis GR, Cherny SS, Cookson WO, Cardon LR. (2002). Merlin - Rapid 
+Analysis of Dense Genetic Maps Using Sparse Gene Flow Trees.
+{\em Nat Gen} 30:97-101.
+
+\bibitem{Goddard 2001}
+Goddard KA, Witte JS, Suarez BK, Catalona WJ, Olson JM (2001)
+Model-Free Linkage Analysis with Covariates Confirms Linkage of
+Prostate Cancer to Chomosomes 1 and 4.  {\em Am J Hum Genet} 68:1197-1206.
+
+\bibitem{Greenwood Bull 1999}
+Greenwood CMT, Bull SB (1999) Analysis of Affected Sib Pairs, With
+Covariates - With and Without Constraints. {\em Am J Hum Genet} 64:871-885. 
+
+\bibitem{allegro}
+Gudbjartsson DF, Thorvaldsson T, Kong A, Gunnarsson G, Ingolfsdottir A
+(2005). Allegro Version 2. {\em Nat Gen}. 37: 1015-1016.
+
+\bibitem{Insightful}
+Insightful Corporation. (2006, August 16). 
+{\em Insightful Corporation: Statistical Analysis Software and 
+Data Mining Software}.  Retrieved August 16, 2006 from Insightful
+Corporation S-PLUS Version 6 Documentation Pages on the World 
+Wide Web: http://www.insightful.com/support/splus60unix/unixug.pdf
+
+\bibitem{genehunter}
+Kruglyak L, Daly MJ, Reeve-Daly MP, Lander ES. (1996). Parametric and
+Nonparametric Linkage Analysis: A Unified Multipoint Approach. 
+{\em Am J Hum Gen} 58:1347-1363.
+
+\bibitem{genehunter2}
+Kruglyak L, Lander ES. (1998) Faster Multipoint Linkage Analysis
+Using Fourier Transforms. {\em Journal of Computational Biology} 5:1-7.
+
+\bibitem{Rhome}
+The R Foundation for Statistical Computing. (2003, March 6). 
+{\em The R Foundation for Statistical Computing}. Software home page 
+on World Wide Web: {\em <http://www.r-project.org>}.
+
+\bibitem{Schaid 2006}
+Schaid DJ, Sinnwell JP, Thibodeau SN (2006) Testing Genetic
+Linkage with Relative Pairs and Covariates by
+Quasi-Likelihood Score Statistics. {\em Submitted}.
+
+\bibitem{Silvapulle 1995}
+Silvapulle M, Silvapulle P. (1995) A Score Test Against One-Sided
+Alternatives.  {\em J Am Statist Assoc} 90:342-349.
+
+\bibitem{Venebles Ripley}
+Venebles WN, Ripley BD (1994) Modern Applied Statistics with S-Plus. 
+{\em Springer-Verlag} New York, NY.
+
+\end{thebibliography}
+
+\end{document}

@@ -80,7 +80,7 @@
 # 
 # Daniel J. Schaid, Ph.D.
 # Division of Biostatistics
-# Harwick Building – Room 775
+# Harwick Building Room 775
 # Mayo Clinic
 # 200 First St., SW
 # Rochester, MN 55905
@@ -113,8 +113,8 @@ Ginv<-function(x, eps=1e-6) {
   # needMatrix <- TRUE
 
   if(length(x)>1) {
-    #if(exists("is.R") && is.function(is.R) && is.R()) {
-      savesvd <- svd(x, LINPACK=FALSE)
+  
+      savesvd <- svd(x)   ## from S code: LINPACK=FALSE
       U.svd<-savesvd$u
       V.svd<-savesvd$v
       d.svd<-savesvd$d

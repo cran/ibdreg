@@ -86,7 +86,7 @@ create.pairs.frame <- function(ibd.dat,
   
   ## CREATE RESPONSE VECTORS, Y.MAT
   # the departure from expected ibd sharing, at each position
-  y.mat <- (2*ibd.dat$post2[!rm.pair,]+ ibd.dat$post1[!rm.pair,]) -
+  y.mat <- (2*ibd.dat$post2[!rm.pair,,drop=FALSE]+ ibd.dat$post1[!rm.pair,,drop=FALSE]) -
            (2*ibd.dat$prior2[!rm.pair] + ibd.dat$prior1[!rm.pair])
 
   ## MAKE COLUMNS FOR COVARIATES
@@ -138,7 +138,7 @@ create.pairs.frame <- function(ibd.dat,
   # order other objects coinciding with it the same
   ord <- do.call("order", id.df)
   
-  list(id.df=id.df[ord,], y.mat=y.mat[ord,, drop=FALSE], status.df=status.df[ord,], x.mat=x.mat[ord,, drop=FALSE],
+  list(id.df=id.df[ord,], y.mat=y.mat[ord,, drop=FALSE], status.df=status.df[ord,,drop=FALSE], x.mat=x.mat[ord,, drop=FALSE],
        pairs.rm.df=pairs.rm.df, data.rm.df=data.rm.df)
 
 }

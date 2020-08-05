@@ -24,11 +24,11 @@ linkage.tests.B0 <- function(y.mat, xvec, ibdvar.lst) {
 
      # row number corresponding to persons in pedigree ped
     this.ped <- (ped.start+1):(ped.start+ibdvar.lst[[ped]]$n)
-    if(!is.na(ibdvar.lst[[ped]]$rank)) {
+    if(!is.na(ibdvar.lst[[ped]]$rank) & length(this.ped)>0) {
           #cat('ped', ped, '\n')
 
       # save portions of Bo hat calculation, contributed by each ped
-      cvy.mat[ped,] <- t(xvec[this.ped])%*%ibdvar.lst[[ped]]$sv.ginv%*%y.mat[this.ped,]
+      cvy.mat[ped,] <- t(xvec[this.ped])%*%ibdvar.lst[[ped]]$sv.ginv%*%y.mat[this.ped,,drop=FALSE]
       cvc.vec[ped] <- t(xvec[this.ped])%*%ibdvar.lst[[ped]]$sv.ginv%*%xvec[this.ped]
     }
     # re-set ped.start to be last person from ped

@@ -1,33 +1,6 @@
 % $Author: sinnwell $ -->
 % $Date: 2010/02/08 18:39:33 $ -->
-% $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.mark.prop.Rd,v 1.2 2010/02/08 18:39:33 sinnwell Exp $ -->
-% $Locker:  $ -->
-% 
-%$Log: sim.mark.prop.Rd,v $
-%Revision 1.2  2010/02/08 18:39:33  sinnwell
-%rm empty sections
-%
-%Revision 1.1  2008/10/14 18:09:51  sinnwell
-%Initial revision
-%
-%Revision 1.6  2006/10/30 21:40:36  sinnwell
-%remove pre tags
-%
-%Revision 1.5  2006/10/30 21:14:29  sinnwell
-%reduce example
-%
-%Revision 1.4  2005/10/07 18:23:16  folie
-%Updated SGML file
-%
-%Revision 1.3  2005/10/04 18:42:48  folie
-%Edited comments
-%
-%Revision 1.2  2005/10/03 21:25:57  folie
-%Updated SGML help file
-%
-%Revision 1.1  2005/09/28 18:37:57  folie
-%Initial revision
-%
+
 \name{sim.mark.prop}
 \alias{sim.mark.prop}
 \title{
@@ -200,7 +173,7 @@ ped7$chrom1 <- c(1,3,5,0,7,0,0)
 ped7$chrom2 <- c(2,4,6,0,8,0,0)
  
 #ped7:
-
+#
 #       1-------2       
 #     1/2   |   3/4     
 #           |           
