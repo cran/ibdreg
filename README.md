@@ -11,3 +11,8 @@ within the same pedigree.
 # Authors
 
 Daniel J. Schaid and Jason P. Sinnwell
+
+# Notes
+
+Prefer to keep pdf version of manual, so borrowed this suggestion to embed into a manual that can be [manual that can be indexed like other vignettes](https://www.markvanderloo.eu/yaRb/2019/01/11/add-a-static-pdf-vignette-to-an-r-package/).
+

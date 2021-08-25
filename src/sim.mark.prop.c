@@ -1,19 +1,3 @@
-/* $Author: sinnwell $ */
-/* $Date: 2006/11/28 21:20:19 $ */
-/* $Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/sim.mark.prop.c,v 1.3 2006/11/28 21:20:19 sinnwell Exp $ */
-/* $Locker:  $ */
-/*
- * $Log: sim.mark.prop.c,v $
- * Revision 1.3  2006/11/28 21:20:19  sinnwell
- * define long to unsigned int
- *
- * Revision 1.2  2005/10/04 18:42:48  folie
- * Edited comments
- * 
- * Revision 1.1  2005/09/28 18:37:57  folie
- * Initial revision
- * * 
- */
 #include "mcmemory.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -30,13 +14,13 @@
 /* This file contains the C routines called by the sim.mark.prop() S-PLUS     */
 /* function                                                                   */
 
-#define long unsigned
+#define ulong unsigned
 
 #define MALE           1
 #define FEMALE         0
-static long REACHED  = 1;
-static long COMPUTED = 1;
-static long FLAG     = 0;
+static ulong REACHED  = 1;
+static ulong COMPUTED = 1;
+static ulong FLAG     = 0;
 struct pedigreeData *pedData = NULL;
 
 /* Represents a person in a generated pedigree                                */
@@ -44,12 +28,12 @@ struct pedigreeData *pedData = NULL;
 struct person
 { struct marriage  *parents;              /* Parents' marriage node           */
   struct marriage  *nuclearFamily;        /* Person's first marriage node     */
-  long              sex;		  /* M or F depending on sex          */
-  long              id;			  /* Person ID                        */
-  long              chrom1;               /* Markers for 1st chromosome       */
-  long              chrom2;               /* Markers for 2nd chromosome       */
-  long              traverseStatus;       /* Has this node been reached       */
-  long              computeStatus;        /* Has this node had data generated */
+  ulong              sex;		  /* M or F depending on sex          */
+  ulong              id;			  /* Person ID                        */
+  ulong              chrom1;               /* Markers for 1st chromosome       */
+  ulong              chrom2;               /* Markers for 2nd chromosome       */
+  ulong              traverseStatus;       /* Has this node been reached       */
+  ulong              computeStatus;        /* Has this node had data generated */
 };
 
 /* Represents a marriage in a generated pedigree                              */
@@ -73,7 +57,7 @@ struct children
 
 struct pedigree
 { struct person    *proband;              /* Proband of the pedigree          */
-  long              n;                    /* Number of people in the pedigree */
+  ulong              n;                    /* Number of people in the pedigree */
   struct person   **personNodes;          /* People in the pedigree           */
 };
 
@@ -81,15 +65,15 @@ struct pedigree
 /* pedigree                                                                   */
 
 struct pedigreeData
-{ long     *father;                  /* Father ID's                           */
-  long     *mother;		     /* Mother ID's                           */
-  long     *person;                  /* Person ID's                           */
-  long     *sex;                     /* Sex status                            */
-  long      n;                       /* Length of the above five vectors      */
-  long      nMark;                   /* Number of marker positions            */
-  long      XProbandIndex;           /* Proband index in X covariate matrix   */
-  long    **CM;                      /* n-by-2*nMark matrix of marker data    */
-  long     *cm;                      /* The vector form of CM passed from S   */
+{ ulong     *father;                  /* Father ID's                           */
+  ulong     *mother;		     /* Mother ID's                           */
+  ulong     *person;                  /* Person ID's                           */
+  ulong     *sex;                     /* Sex status                            */
+  ulong      n;                       /* Length of the above five vectors      */
+  ulong      nMark;                   /* Number of marker positions            */
+  ulong      XProbandIndex;           /* Proband index in X covariate matrix   */
+  ulong    **CM;                      /* n-by-2*nMark matrix of marker data    */
+  ulong     *cm;                      /* The vector form of CM passed from S   */
   struct pedigree *ped;              /* Points to current pedigree structure  */
 };
 
@@ -102,10 +86,8 @@ static void traverse(struct pedigreeData *pedData, void (*func)());
 static void traverse_engine(struct person *subject, 
                             struct pedigreeData *pedData,
                             void(*func)());
-static long runifAS183_seed(long iseed1, long iseed2, long iseed3);
+static ulong runifAS183_seed(ulong iseed1, ulong iseed2, ulong iseed3);
 static double runifAS183();
-static void qs(double array_sort[], long left, long right);
-static long rpoisson(double mu);
 
 /* SIM_MARK_PROP_GEN_PED
 
@@ -170,19 +152,17 @@ also set.
 
 */
 
-void sim_mark_prop_gen_ped(long   *person,
-                           long   *father,    
-                           long   *mother,
-                           long   *sex,
-                           long   *n,
-                           long   *nMark,
-                           long   *cm,
-                           long   *iseed1,
-                           long   *iseed2,
-                           long   *iseed3)
+void sim_mark_prop_gen_ped(ulong   *person,
+                           ulong   *father,    
+                           ulong   *mother,
+                           ulong   *sex,
+                           ulong   *n,
+                           ulong   *nMark,
+                           ulong   *cm,
+                           ulong   *iseed1,
+                           ulong   *iseed2,
+                           ulong   *iseed3)
 {
- struct person *subject;
- long i, j, row, col;
 
  /* Set the seeds for the uniform random number generator:                   */  
  runifAS183_seed(*iseed1, *iseed2, *iseed3);
@@ -248,13 +228,13 @@ traversal, the generated markers are stored in the corresponding entries
 
 */
 
-void simulate_marker_propagation(long *numIter,
-                                 long *ret,
-                                 long *proband,
-                                 long *xlinked)
+void simulate_marker_propagation(ulong *numIter,
+                                 ulong *ret,
+                                 ulong *proband,
+                                 ulong *xlinked)
 {
  struct person *subject;
- long i, j, n, nrow, col;
+ ulong i, j, n, nrow;
 
  n = *numIter;
  nrow = pedData->n;
@@ -380,15 +360,15 @@ generate_pedigree() returns a pointer to a struct of type pedigree.
 
 static struct pedigree *generate_pedigree(struct pedigreeData *pedData)
 {
- long             *father   = pedData->father;
- long             *mother   = pedData->mother; 
- long             *person   = pedData->person;
- long             *sex      = pedData->sex;
- long              n        = pedData->n;
- long              nMark    = pedData->nMark;
- long             *cm       = pedData->cm;
- long              i, j, action;
- long            **CM;
+ ulong             *father   = pedData->father;
+ ulong             *mother   = pedData->mother; 
+ ulong             *person   = pedData->person;
+ ulong             *sex      = pedData->sex;
+ ulong              n        = pedData->n;
+ ulong              nMark    = pedData->nMark;
+ ulong             *cm       = pedData->cm;
+ ulong              i, j, action;
+ ulong            **CM;
  struct person   **personNodes;
  struct marriage  *marriageNode;
  struct children  *childNode;
@@ -403,9 +383,9 @@ static struct pedigree *generate_pedigree(struct pedigreeData *pedData)
  struct pedigree  *Pedigree;
 
 /* Set up the n-by-2*nMark chromosome marker matrix CM    */
- CM = (long **) Salloc(n+1, long *);
+ CM = (ulong **) Salloc(n+1, ulong *);
  for(i = 0; i <= n; i++)
-    CM[i] = (long *) Salloc(2*nMark, long);
+    CM[i] = (ulong *) Salloc(2*nMark, ulong);
 
 /* Fill in the data from S-Plus for the founders          */
  for(i = 1; i <= n; i++)
@@ -1003,38 +983,6 @@ return;
 
 
 
-/****************************************************************************/
-/***               quicksort algorithm for large arrays                   ***/
-
-static void qs(double array_sort[], long left, long right)
-{
-  long i,j;
-  double mid, temp_sort;
-
-  i = left; j = right;
-  mid = array_sort[(left + right) / 2];
-
-  do {
-    while(array_sort[i] < mid && i < right) i++;
-    while(mid < array_sort[j] && left < j) j--;
-    
-    if(i<=j) {
-      temp_sort = array_sort[i];		/* swap elements	       */
-      array_sort[i] = array_sort[j];
-      array_sort[j] = temp_sort;
-      
-      i++; j--;
-    }
-  } while(i <= j);
-
-  if(left < j) 
-    qs(array_sort, left, j);
-  if(i < right) 
-    qs(array_sort, i, right);
-
-  return; 
-}
-
 /*
      Algorithm AS 183 Appl. Statist. (1982) vol.31, no.2
 
@@ -1051,11 +999,11 @@ static void qs(double array_sort[], long left, long right)
 
 */
 
-static long ix, iy, iz;
+static ulong ix, iy, iz;
 
-static long runifAS183_seed(long iseed1, long iseed2, long iseed3)
+static ulong runifAS183_seed(ulong iseed1, ulong iseed2, ulong iseed3)
 {
-  long error;
+  ulong error;
 
   error=1;
   if( (iseed1 >=1 && iseed1 <=30000) && (iseed2 >=1 && iseed2 <=30000) && 
@@ -1078,30 +1026,4 @@ static double runifAS183()
    return ( u - (int) u );
 }
 
-
-/****************************************************************************/
-
-/* Poisson random variates (Ripley, Alg 3.3 ,page 55 )
-   Prior to calling rpoisson, the function runifAS183_seed must be 
-   called with three input starting seed values.
-
-   Requires functions:  runifAS183 and runifAS183_seed
-
-*/
-
-
-static long rpoisson(double mu){
-   
-  long n;
-  double c, p;
-
-  c=exp(-mu); 
-  p=1.0;
-  n=0;
-  do {
-    p *=  runifAS183();
-    n++;
-  } while (p >= c);
-  return n-1;
-}
 

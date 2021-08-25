@@ -24,10 +24,10 @@
 #include <string.h>
 #include <R.h> 
 
-#define long unsigned
+#define ulong unsigned
 
-static double **double_vec_to_mat(double *Yvec, long nrow, long ncol);
-static double **double_matrix(long nrow, long ncol);
+static double **double_vec_to_mat(double *Yvec, ulong nrow, ulong ncol);
+static double **double_matrix(ulong nrow, ulong ncol);
 static void errmsg(char *string);
 
 
@@ -74,7 +74,6 @@ void lsConstrain(
   int k = *k_in;
   int n = *n_in;
 
-  long nwork = *nwork_in;
   int nk = n * k;
   int nk2 = nk + nk;
   int nk2k = nk2 + k;
@@ -255,9 +254,9 @@ void lsConstrain(
 
 /***********************************************************************************/
 
-static double **double_vec_to_mat(double *Yvec, long nrow, long ncol){
+static double **double_vec_to_mat(double *Yvec, ulong nrow, ulong ncol){
 
-   long i,j,k;
+   ulong i,j,k;
    double **Y;
 
    Y=double_matrix(nrow,ncol);
@@ -273,9 +272,9 @@ static double **double_vec_to_mat(double *Yvec, long nrow, long ncol){
 
 /***********************************************************************************/
 
-static double **double_matrix(long nrow, long ncol){
+static double **double_matrix(ulong nrow, ulong ncol){
 /* allocate double matrix with subscript range m[0 ..(nrow-1)][0..(ncol-1)] */
-        long i;
+        ulong i;
         double **m;
 
         /* allocate pointers to rows */

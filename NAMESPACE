@@ -1,5 +1,5 @@
 import(tools, stats, methods, graphics, utils)
-useDynLib(ibdreg)
+useDynLib(ibdreg, .registration=TRUE)
 export(align.ibd.var,
 create.ibd.dat,
 create.pairs.frame,

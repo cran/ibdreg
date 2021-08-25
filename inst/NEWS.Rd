@@ -1,9 +1,11 @@
 \name{NEWS}
 \title{NEWS file for the ibdreg package}
-\section{Updates for version 0.3.0}{
+\section{Updates for version 0.3.2}{
   \itemize{
     \item remove LINPACK argument from svd
     \item check into github repo with updates for R 4.0 check requirements
+    \item define ulong as unsigned in c code
+    \item remove unused variable in C code (caught by CRAN checks)
   }
 }
 \section{Changes in version 0.2.6}{
