@@ -2,7 +2,10 @@
 
 #define Salloc(l,s) mc_calloc((l),sizeof(s))
 #define Calloc(l,s) mc_calloc((l),(s))
-#define Free(p) mc_free(p)
+/*
+ #define Free(p) mc_free(p)  
+rename mc_free to just Free so this line not needed, so this not needed  JPS 9/2021
+*/
 
 struct mcMemory
 { void *firstMemory;
@@ -72,9 +75,9 @@ static void *mc_calloc(size_t num, size_t size)
 /*                                                                          */
 /****************************************************************************/
 /****************************************************************************/
-/****************************************************************************/
+/**********9/2021 replace mc_free with just "Free" **************************/
 
-static void mc_free(void *memory2free)
+static void Free(void *memory2free)
 {
   struct mcMemory *previousMemory = NULL;
   struct mcMemory *currentMemory, *oldMemoryEnd;

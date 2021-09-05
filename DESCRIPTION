@@ -1,6 +1,6 @@
 Package: ibdreg
-Version: 0.3.4
-Date: 2021-8-10
+Version: 0.3.6
+Date: 2021-9-3
 Title: Regression Methods for IBD Linkage with Covariates
 Author: Jason P. Sinnwell and Daniel J. Schaid
 Maintainer: Jason P. Sinnwell <Sinnwell.Jason@mayo.edu>
@@ -12,9 +12,8 @@ License: GPL-2 | file LICENSE
 Depends: R (>= 3.3.1), methods, stats, tools, graphics, utils
 Suggests: R.rsp
 VignetteBuilder: R.rsp
-URL:
-        https://www.mayo.edu/research/labs/statistical-genetics-genetic-epidemiology/software
+URL: https://analytictools.mayo.edu/research/ibdreg/
 NeedsCompilation: yes
-Packaged: 2021-08-10 16:05:21 UTC; sinnwell
+Packaged: 2021-09-03 14:59:39 UTC; sinnwell
 Repository: CRAN
-Date/Publication: 2021-08-25 13:10:02 UTC
+Date/Publication: 2021-09-05 04:30:14 UTC

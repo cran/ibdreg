@@ -20,7 +20,7 @@ Then add the .registration=TRUE string as second argument to useDynLib() in NAME
 /* .C calls */
 extern void lsConstrain(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void sim_mark_prop_free_mem();
-extern void sim_mark_prop_gen_ped(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void sim_mark_prop_gen_ped(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void simulate_marker_propagation(void *, void *, void *, void *);
 
 static const R_CMethodDef CEntries[] = {

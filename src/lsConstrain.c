@@ -23,7 +23,7 @@
 #include <math.h>
 #include <string.h>
 #include <R.h> 
-
+#include <R_ext/Error.h>
 #define ulong unsigned
 
 static double **double_vec_to_mat(double *Yvec, ulong nrow, ulong ncol);
@@ -298,6 +298,10 @@ static void errmsg(char *string){
   /* Function to emulate "stop" of S+ - see page 134, S Programing, by
      Venables and Ripley */
 
-   PROBLEM "%s", string RECOVER(NULL_ENTRY);
+  /* PROBLEM "%s", string RECOVER(NULL_ENTRY); 
+     For R 4.1.x and later, use Rf_error from R_ext/Error.h 
+  */
+  Rf_error(string);
+   
 }
 

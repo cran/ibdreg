@@ -1,13 +1,3 @@
-%$Author: sinnwell $
-%$Date: 2006/11/30 21:52:32 $
-%$Header: /people/biostat3/sinnwell/Projects/IBDReg/Make/RCS/manualIBDReg.Rnw,v 1.2 2006/11/30 21:52:32 sinnwell Exp sinnwell $
-%$Id: manualIBDReg.Rnw,v 1.2 2006/11/30 21:52:32 sinnwell Exp sinnwell $
-%$Locker: sinnwell $
-%$Log: manualIBDReg.Rnw,v $
-%Revision 1.2  2006/11/30 21:52:32  sinnwell
-%for release 0.1.0 in early December
-%
-
 
 %\VignetteIndexEntry{ibdreg}
 %\VignetteKeywords{ibd, linkage, heterogeneity}
@@ -31,9 +21,8 @@
 \newenvironment{Schunk}{}{}
 
 \documentclass[11pt]{article}
-\def\version{version 0.1.2}
-\def\Rversion{version 2.7.1}
-\def\Sversion{version 8.0.1}
+\def\version{version 0.3.6}
+\def\Rversion{version 4.0.3}
 \def\pack{{\sf ibdreg}}
 \def\func{{\sl ibdreg()}}
 \def\Explain{\paragraph{\large {\bf Explanation of Results \vspace{.1in}} \\}}
@@ -92,25 +81,14 @@ excess allele sharing in the direction expected under linkage.
 
 
 \section{Operating System and Installation}
-The \pack\ package \version\ is written for both S-PLUS (\Sversion) and 
-R (\Rversion) for Unix and Windows.  It has been placed on the Comprehensive R 
-Archive Network (CRAN), and is made available on other systems through
-CRAN. Installation procedures for S-PLUS and R systems will vary; the 
-Unix installations are explained in the {\sl README.ibdreg} text file,
-located at the top level of the \pack\ directory.
+The \pack\ package \version\ is written for R 
+R (\Rversion) and has been placed on the Comprehensive R 
+Archive Network (CRAN), where it is made available on other systems.
+It is assumed that users have a general working knowledge of the R
+language.  
 
-It is assumed that users have a general working knowledge of the S
-language.  Some of the basic steps in using \pack\ will be confusing
-without a general knowledge of the S language.  Users who are new to S-PLUS 
-or R, please refer to Venebles and Ripley\cite{Venebles Ripley}, and
-introductory guides on the Insightful\cite{Insightful} and 
-R Project\cite{Rhome} home pages.
-
-The procedures for running analyses in \pack\ are the same for S-PLUS and R,
-following instructions in this document.
-
-\section{Installing and Loading the Library}
-To install \pack\ for S-PLUS or R, refer to
+\section{Installing and Loading the Packae}
+To install \pack\, refer to
 instructions given in {\sl README.ibdreg}.  The package may be
 installed for global or local use on your system.  After installing the 
 \pack\ library, the routines are available by starting a session and 
@@ -127,8 +105,8 @@ if(any(objects()=="pairDiff")) rm(pairDiff)
 @
 <<echo=TRUE>>=
 # load the library, load and preview at demo dataset
-library(ibdreg)
-
+library(ibdreg, lib="~/Rlib403")
+sessionInfo()
 @
 
 \section{Data Setup }
