@@ -47,18 +47,11 @@ provided in /ibdreg/perl/ in the ibdreg package
 \value{
 an ibd.var object (e.g. ret) that contains the following elements for each
 pedigree:
-<pre>
-ret\$ped.id: pedigree id
-
-ret\$person1.id: vector of ids for first person in the relative pair
-
-ret\$person2.id: vector of ids for second person in the relative pair
-
-ret\$sm: mean vector of ibd sharing between relative pairs \{person1.id, person2.id\}
-
-ret\$sv: variance-covariance matrix for ibd sharing between pairs of
-relative pairs.
-</pre
+  \item{ped.id}{pedigree id}
+  \item{$person1.id}{vector of ids for first person in the relative pair}
+  \item{person2.id}{vector of ids for second person in the relative pair}
+  \item{sm}{ mean vector of ibd sharing between relative pairs person1.id, person2.id}
+  \item{sv}{variance-covariance matrix for ibd sharing between pairs of relative pairs}
 }
 \seealso{
 \code{\link{sim.ibd.var}}
@@ -70,7 +63,5 @@ relative pairs.
 
 ## make an ibd.var object from chr1.var.tmp file
 
-# RorS> chr1.ibd.var <- exact.ibd.var("chr1.var.tmp")
+# R> chr1.ibd.var <- exact.ibd.var("chr1.var.tmp")
 }
-% docclass is function
-% Converted by Sd2Rd version 43267.

@@ -2,6 +2,7 @@
 
 #define Salloc(l,s) mc_calloc((l),sizeof(s))
 #define Calloc(l,s) mc_calloc((l),(s))
+
 /*
  #define Free(p) mc_free(p)  
 rename mc_free to just Free so this line not needed, so this not needed  JPS 9/2021
@@ -65,112 +66,7 @@ static void *mc_calloc(size_t num, size_t size)
     }
 }
 
-
-/****************************************************************************/
-/****************************************************************************/
-/****************************************************************************/
-/*                                                                          */
-/* The function mc_free frees a single dynamically allocated unit of        */
-/* memory.  If the memory pointed to does not exist, no action is taken.    */
-/*                                                                          */
-/****************************************************************************/
-/****************************************************************************/
-/**********9/2021 replace mc_free with just "Free" **************************/
-
-static void Free(void *memory2free)
-{
-  struct mcMemory *previousMemory = NULL;
-  struct mcMemory *currentMemory, *oldMemoryEnd;
-
-  if(memoryStart == NULL)
-    return;
-
-  if(memoryStart == memoryEnd)
-    {
-     if(memory2free == memoryStart->firstMemory)
-       {
-	 free(memoryStart->firstMemory);
-         free(memoryStart);
-         memoryStart = NULL;
-         memoryEnd   = NULL;
-         return;
-       }
-     else
-       {
-	 return;
-       }
-    }
-
-  /* Use psuedo-data: */
-  memoryEnd->nextMemory = (struct mcMemory *)malloc(sizeof(struct mcMemory));
-
-  /* Cannot use psuedo-data */
-  if(memoryEnd->nextMemory == NULL)
-    {
-     currentMemory = memoryStart;
-     while( (currentMemory->firstMemory != memory2free) && 
-            (currentMemory->nextMemory  != NULL)          )
-       {
-        previousMemory = currentMemory;
-        currentMemory = currentMemory->nextMemory;
-       }
-     if(currentMemory->firstMemory != memory2free)
-       {
-        /* Memory Allocation not found - we're at the end of the list */
-        return;
-       }
-     else
-       {
-        /* Perform the requested memory deallocation: */
-        free(currentMemory->firstMemory);
-        if(previousMemory != NULL)
-          previousMemory->nextMemory = currentMemory->nextMemory;
-        else /* (currentMemory == memoryStart) */
-          memoryStart = memoryStart->nextMemory;
-        if(currentMemory == memoryEnd)
-          memoryEnd = previousMemory;
-        free(currentMemory);
-        return;
-       } 
-    }
-
-  /* Can use psuedo-data */
-  oldMemoryEnd = memoryEnd;
-  memoryEnd = memoryEnd->nextMemory;
-  memoryEnd->firstMemory = memory2free;
-  memoryEnd->nextMemory  = NULL;
-
-  currentMemory = memoryStart;
-  while(currentMemory->firstMemory != memory2free)
-    {
-     previousMemory = currentMemory;
-     currentMemory = currentMemory->nextMemory;
-    }
-  if(currentMemory == memoryEnd)
-    {
-      /* Memory Allocation not found */
-      free(currentMemory);
-      memoryEnd = oldMemoryEnd;
-      memoryEnd->nextMemory = NULL;
-      return;
-    }
-  else
-    {
-      /* Found the memory allocation - free psuedo-data first: */
-      free(memoryEnd);
-      memoryEnd = oldMemoryEnd;
-      memoryEnd->nextMemory = NULL;
-      /* Now perform the requested memory deallocation: */
-      free(currentMemory->firstMemory);
-      previousMemory->nextMemory = currentMemory->nextMemory;
-      if(currentMemory == memoryStart)
-        memoryStart = memoryStart->nextMemory;
-      if(currentMemory == memoryEnd)
-        memoryEnd = previousMemory;
-     free(currentMemory);
-     return;
-    }
-}
+ 
 
 
 /****************************************************************************/
@@ -185,7 +81,7 @@ static void Free(void *memory2free)
 /****************************************************************************/
 /****************************************************************************/
 
-static void mc_free_all()
+static void mc_free_all(void) // JPS added void 11/2022
 { 
   struct mcMemory *currentMemory;
   struct mcMemory *temp;

@@ -50,17 +50,11 @@ calculations on each pedigree.
 \value{
 The return value, call it ret, is an ibd.var object that contains 
 the following elements for each pedigree:
-
-ret\$ped.id: pedigree id
-
-ret\$person1.id: vector of ids for first person in the relative pair
-
-ret\$person2.id: vector of ids for second person in the relative pair
-
-ret\$sm: mean vector of ibd sharing between relative pairs \{person1.id, person2.id\}
-
-ret\$sv: variance-covariance matrix for ibd sharing between pairs of
-relative pairs.
+\item{ped.id}{ pedigree id}
+\item{person1.id}{ vector of ids for first person in the relative pair}
+\item{person2.id}{ vector of ids for second person in the relative pair}
+\item{sm}{ mean vector of ibd sharing between relative pairs:  person1.id, person2.id}
+\item{sv}{ variance-covariance matrix for ibd sharing between pairs of relative pairs}
 }
 \details{
 The bulk of the work for simulating ibd sharing vectors is in

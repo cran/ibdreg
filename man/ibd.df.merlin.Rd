@@ -34,15 +34,10 @@ names: FAMILY, ID1, ID2, MARKER
 }
 \value{
 The returned data.frame, call it df, with the following elements:
-
-df\$ped.id:     pedigree id
-
-df\$person1.id:
-df\$person2.id: identifiers for the relative pair within a pedigree
-
-df\$post0:      matrix objects that can be referenced from df.  Each
-df\$post1:      is a matrix with posterior ibd sharing probabilities for
-df\$post2:      relative pairs (rows) at each chromosome position (columns)
+  \item{ped.id}{pedigree id}
+  \item{person1.id}{person 1 of a relative pair}
+  \item{person2.id}{ person 2 identifier of a relative pair within a pedigree}
+  \item{post0}{matrix objects that can be referenced from df.  Each}
+  \item{post1}{is a matrix with posterior ibd sharing probabilities for}
+  \item{post2}{relative pairs (rows) at each chromosome position (columns)}
 }
-% docclass is function
-% Converted by Sd2Rd version 43267.

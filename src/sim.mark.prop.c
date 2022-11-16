@@ -11,7 +11,7 @@
    alloc functions that Dan Folie defines here instead of there
 */
 
-/* This file contains the C routines called by the sim.mark.prop() S-PLUS     */
+/* This file contains the C routines called by the sim.mark.prop() S-PLUS/R     */
 /* function                                                                   */
 
 #define ulong unsigned
@@ -21,7 +21,7 @@
 static ulong REACHED  = 1;
 static ulong COMPUTED = 1;
 static ulong FLAG     = 0;
-struct pedigreeData *pedData = NULL;
+struct pedigreeData *pedData = NULL; 
 
 /* Represents a person in a generated pedigree                                */
 
@@ -29,7 +29,7 @@ struct person
 { struct marriage  *parents;              /* Parents' marriage node           */
   struct marriage  *nuclearFamily;        /* Person's first marriage node     */
   ulong              sex;		  /* M or F depending on sex          */
-  ulong              id;			  /* Person ID                        */
+  ulong              id;			  /* Person ID              */
   ulong              chrom1;               /* Markers for 1st chromosome       */
   ulong              chrom2;               /* Markers for 2nd chromosome       */
   ulong              traverseStatus;       /* Has this node been reached       */
@@ -82,12 +82,11 @@ static void generate_markers_autosomal(struct person *subject,
                                        struct pedigreeData *pedData);
 static void generate_markers_xlinked(struct person *subject,
                                      struct pedigreeData *pedData);
-static void traverse(struct pedigreeData *pedData, void (*func)());
-static void traverse_engine(struct person *subject, 
-                            struct pedigreeData *pedData,
-                            void(*func)());
+static void traverse(struct pedigreeData *pedData, void (*func)(struct person *subject, struct pedigreeData  *pedData));
+
+static void traverse_engine(struct person *subject,  struct pedigreeData *pedData, void (*func)(struct person *subject, struct pedigreeData *pedData));
 static ulong runifAS183_seed(ulong iseed1, ulong iseed2, ulong iseed3);
-static double runifAS183();
+static double runifAS183(void);
 
 /* SIM_MARK_PROP_GEN_PED
 
@@ -300,8 +299,7 @@ sim_mark_prop_free_mem() frees dynamically allocated memory
 
 */
 
-void sim_mark_prop_free_mem()
-{
+void sim_mark_prop_free_mem(void) {
  mc_free_all();
  return;
 }
@@ -810,8 +808,7 @@ traverse() returns no value.
 
 */
 
-static void traverse(struct pedigreeData *pedData,
-                     void (*func)())
+static void traverse(struct pedigreeData *pedData, void (*func)(struct person *subject, struct pedigreeData  *pedData))
 {
  if(FLAG == 0)
    {
@@ -872,9 +869,7 @@ actions being specified by the function assigned to the "func" parameter.
 
 */
 
-static void traverse_engine(struct person *subject, 
-                            struct pedigreeData *pedData,
-                            void(*func)())
+static void traverse_engine(struct person *subject, struct pedigreeData *pedData, void (*func)(struct person *subject, struct pedigreeData  *pedData))
 {
  struct children *currentChild;
  struct marriage *currentSpouse;
@@ -1015,7 +1010,7 @@ static ulong runifAS183_seed(ulong iseed1, ulong iseed2, ulong iseed3)
   return (error);
 }
 
-static double runifAS183()
+static double runifAS183(void)
 {
    double u;
 

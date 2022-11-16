@@ -132,7 +132,7 @@ on IBD sharing (e.g, heterogeneity), assuming either a
 model-based variance-covariance matrix or a robust variance-covariance
 matrix. Tests (i) - (iii) are evaluated as unconstrained (two-sided test) and 
 constrained for excess allele sharing in one direction.  If formula is
-\~1, there are no covariates, so the tests will be for linkage only.
+"~1" there are no covariates, so the tests will be for linkage only.
 
 Another test (iv) is for linkage using all relative pairs. This test 
 imposes constraints on allele sharing for one-sides tests favoring

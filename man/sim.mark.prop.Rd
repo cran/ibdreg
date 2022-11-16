@@ -21,29 +21,13 @@ sim.mark.prop(ped,
               n.iter=1)
 }
 \arguments{
-\item{ped}{
-The ped argument is an object of class "list" or class "data.frame" and
-it must have the following six fields:
-
-ped\$person:  A vector or factor.  The person ID of each pedigree member.
-
-ped\$father:  A vector or factor.  The father ID of each pedigree member.
-
-ped\$mother:  A vector or factor.  The mother ID of each pedigree member.
-
-ped\$sex:     A vector or factor.  The sex of each pedigree member.
-
-ped\$chrom1:  A vector or factor.  The first marker of the marker data 
-             pair for each pedigree member (only founder data is required;
-             non-founder data will be ignored in the simulations).  If 
-             x.linked=TRUE, then male pedigree members must be homozygous
-             at the specified marker site.
-
-ped\$chrom2:  A vector or factor.  The second marker of the marker data
-             pair for each pedigree member (only founder data is required;
-             non-founder data will be ignored in the simulations).  If 
-             x.linked=TRUE, then male pedigree members must be homozygous
-             at the specified marker site.
+\item{ped}{The ped argument is an object of class "list" or class "data.frame" and
+  it must have the following six fields: person, father, mother, sex,
+  chrom1, chrom2, where the chromosome vectors are the marker data 
+  pair for each pedigree member (only founder data is required;
+  non-founder data will be ignored in the simulations).  If 
+  x.linked=TRUE, then male pedigree members must be homozygous
+  at the specified marker site.
 }
 \item{iseed}{
 An integer or a saved copy of .Random.seed.  This allows simulations to be
@@ -81,43 +65,34 @@ The return value, call it ret, is an object of class "list" or class
 the sim.mark.prop() function was called with, and it has the follwing
 fields:
 
-ret\$person:   A vector or factor.  The person ID of each pedigree member.
+\item{person}{numeric vector or factor.  The person ID of each pedigree member}
+\item{father}{numeric vector or factor.  The father ID of each pedigree member}
+\item{mother}{numeric vector or factor.  The mother ID of each pedigree member}
+\item{sex}{numeric vector or factor.  The sex of each pedigree member}
+\item{chrom1}{A vector or factor.  The first marker of the marker data 
+        pair for each pedigree member input into the sim.mark.prop() program}
+\item{chrom2}{A vector or factor.  The second marker of the marker data 
+        pair for each pedigree member input into the sim.mark.prop() program}
 
-ret\$father:   A vector or factor.  The father ID of each pedigree member.
-
-ret\$mother:   A vector or factor.  The mother ID of each pedigree member.
-
-ret\$sex:      A vector or factor.  The sex of each pedigree member.
-
-ret\$chrom1:   A vector or factor.  The first marker of the marker data 
-              pair for each pedigree member input into the 
-              sim.mark.prop() program.
-
-ret\$chrom2:   A vector or factor.  The second marker of the marker data 
-              pair for each pedigree member input into the 
-              sim.mark.prop() program.
-
-ret\$mark1:    A vector if n.iter=1, otherwise an object of class 
+\item{mark1}{A vector if n.iter=1, otherwise an object of class 
               "model.matrix".  Letting n.subjects denote the number of
               pedigree members, "mark1" is an n.subject-by-n.iter matrix
               with the ith column listing the first simulated marker of
               each simulated marker pair computed by the ith simulation
               for the corresponding pedigree member.  If X-linked 
               inheritance was specified (x.linked=TRUE), each male will
-              be homozygous at the simulated marker location.
-
-ret\$mark2:    A vector if n.iter=1, otherwise an object of class 
+              be homozygous at the simulated marker location}
+\item{mark2}{A vector if n.iter=1, otherwise an object of class 
               "model.matrix".  Letting n.subjects denote the number of
               pedigree members, "mark2" is an n.subject-by-n.iter matrix
               with the ith column listing the second simulated marker of
               each simulated marker pair computed by the ith simulation
               for the corresponding pedigree member.  If X-linked 
               inheritance was specified (x.linked=TRUE), each male will
-              be homozygous at the simulated marker location
-
-ret\$x.linked: A flag denoting whether the simulated "mark1" and "mark2"
+              be homozygous at the simulated marker location}
+\item{x.linked}{ A flag denoting whether the simulated "mark1" and "mark2"
               data was simulated to conform to autosomal inheritance or
-              X-linked inheritance.
+              X-linked inheritance}
 }
 \section{Side Effects}{
 The sim.mark.prop() program has no side effects.
@@ -130,9 +105,9 @@ ancestoral founders.  Thus, maximum flexibility may be obtained.
 
 Both autosomal and X-linked methods of inheritance are supported through
 the use of the x.linked parameter.  When X-linked inheritance is 
-specified, the input marker data ("ped\$chrom1" and "ped\$chrom2") must be
+specified, the input marker data ("chrom1" and "chrom2") must be
 homozygous for male pedigree members, and the simulated output marker 
-data ("ret\$mark1" and "ret\$mark2") will be homozygous for male pedigree
+data ("mark1" and "mark2") will be homozygous for male pedigree
 members.
 
 When more than one set of simulated marker data is desired, it is
@@ -154,8 +129,8 @@ avoid the significant increase in computational time that is seen when
 disk paging is required).
 
 The non-founder members of the pedigree will have the first marker of 
-each simulated marker pair (ret\$mark1) inherited from the father, and
-the second marker of each simulated marker pair (ret\$mark2) inherited 
+each simulated marker pair (mark1) inherited from the father, and
+the second marker of each simulated marker pair (mark2) inherited 
 from the mother.  Thus, it is possible to follow maternal and paternal
 allele transmission through dependent pedigree members.
 }
@@ -185,10 +160,7 @@ ped7$chrom2 <- c(2,4,6,0,8,0,0)
 #       6       7       
 #     0/0       0/0     
 
-prop7 <- sim.mark.prop(ped7, n.iter=5)
-
-prop7
-
+sim.mark.prop(ped7, n.iter=5)
 
 ## an x.linked example
 
@@ -213,9 +185,6 @@ ped7.x$chrom2 <- c(1,3,4,0,5,0,0)
 #       6       7       
 #     0/0       0/0 
 
-prop7X <- sim.mark.prop(ped7.x, x.linked=TRUE, n.iter=5)
+sim.mark.prop(ped7.x, x.linked=TRUE, n.iter=5)
 
-prop7X
 }
-% docclass is function
-% Converted by Sd2Rd version 43267.
